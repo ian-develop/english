@@ -1,0 +1,857 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="English Loop">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="영어 여섯 문장을 Puck 목소리로 반복 학습하는 모바일 영어 말하기 웹 앱.">
+<title>English Loop · Puck v3.1 Rose</title>
+<!-- v3.1: two-file iPhone package. Upload index.html and apple-touch-icon.png.
+     The approved transparent rose logo, favicon, CSS and app code are embedded.
+     iPhone standalone metadata above replaces the separate web app manifest.
+     The Kokoro runtime/model are still fetched remotely on demand, as before. -->
+<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=3.1">
+<link rel="icon" type="image/png" sizes="64x64" href="data:image/png;base64,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">
+<style>
+:root{--paper:#ffffff;--white:#fff;--ink:#4f4554;--deep:#a56481;--muted:#8f8392;--line:#ede4eb;--soft:#fbf5f8;--lime:#f2dbe7;--warn:#9d6f63;--radius:22px}*{box-sizing:border-box}[hidden]{display:none!important}html{scroll-behavior:smooth;scroll-padding-top:18px}body{margin:0;background:var(--paper);font:15px/1.6 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:var(--ink);-webkit-text-size-adjust:100%;padding-bottom:calc(144px + env(safe-area-inset-bottom))}button,input,textarea,select{font:inherit}button{touch-action:manipulation;cursor:pointer;-webkit-tap-highlight-color:transparent}button:disabled{opacity:.45;cursor:not-allowed}button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #d39ab2;outline-offset:3px}button{border:0}a{color:var(--deep)}svg{width:21px;height:21px;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round;flex:none;vertical-align:middle}.shell{width:min(540px,calc(100% - 32px));margin:auto}.topbar{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.brand{display:flex;gap:9px;align-items:center;font-size:20px;font-weight:750;letter-spacing:-.6px}.brandmark{display:grid;place-items:center;width:35px;height:35px;background:var(--deep);border-radius:11px;color:var(--lime)}.top-actions{display:flex;gap:3px}.iconbtn{display:inline-grid;place-items:center;background:transparent;color:var(--muted);width:44px;height:44px;border-radius:12px}.iconbtn:hover{background:var(--soft)}.eyebrow{font-size:10px;font-weight:750;letter-spacing:1.6px;color:var(--muted);margin:0 0 8px}.hero{padding:26px 0 23px}.hero h1{font-size:29px;line-height:1.35;letter-spacing:-1.2px;margin:0 0 10px;font-weight:730}.hero p{font-size:13px;color:var(--muted);margin:0;word-break:keep-all}.voice-hero{display:inline-flex;gap:6px;align-items:center;margin-top:13px;padding:5px 10px;background:#fbf1f6;color:var(--deep);border-radius:30px;font-size:11px;font-weight:650}.mini-dot{height:5px;width:5px;background:#d193ae;border-radius:50%}.card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:21px;margin-bottom:16px}.section-head{display:flex;justify-content:space-between;align-items:center;gap:9px;margin-bottom:14px}.section-head h2{font-size:15px;letter-spacing:-.4px;margin:0;display:flex;align-items:center;gap:9px}.step{font-size:10px;font-weight:700;border:1px solid #ebd9e4;width:24px;line-height:24px;text-align:center;color:#9a6f88;border-radius:7px}.subtle{font-size:11px;line-height:1.75;color:var(--muted);margin:7px 0}.micro{font-size:10px;color:var(--muted)}.pill{font-size:10px;white-space:nowrap;background:var(--soft);padding:4px 9px;border-radius:20px;color:#90657f}.voice-line{display:flex;align-items:center;justify-content:space-between;gap:12px}.voice-name{font-size:28px;font-weight:680;letter-spacing:-.5px;line-height:1.2}.voice-name small{display:block;font-size:11px;color:var(--muted);font-weight:400;letter-spacing:0;margin-top:5px}.bars{display:flex;align-items:center;gap:5px;height:45px}.bars i{width:5px;background:#e2b8cb;border-radius:4px;height:15px}.bars i:nth-child(2){height:31px}.bars i:nth-child(3){height:44px;background:#b17693}.bars i:nth-child(4){height:27px}.bars i:nth-child(5){height:12px}.primary,.secondary,.outline{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:12px;min-height:47px;padding:11px 15px;font-size:13px;font-weight:650;text-decoration:none}.primary{background:var(--deep);color:#fff}.primary:hover{background:#8d5a74}.secondary{background:var(--soft);color:var(--deep)}.outline{background:#fff;border:1px solid var(--line);color:var(--ink)}.full{width:100%}.ghost{background:transparent;color:var(--muted);padding:6px 9px;min-height:42px;font-size:11px;border-radius:10px}.ghost:hover{background:var(--soft)}.setup-action{margin-top:17px}.setup-note{margin:9px 0 0;font-size:11px;color:var(--muted);word-break:keep-all}.status-box{margin-top:12px;background:#fcf4f8;border-radius:12px;padding:12px;font-size:12px}.status-line{display:flex;justify-content:space-between;gap:10px;align-items:start}.status-line span:first-child{overflow-wrap:anywhere}.meter{width:100%;height:5px;accent-color:#b57795;display:block;margin-top:10px;border:0;border-radius:10px;overflow:hidden}.meter::-webkit-progress-bar{background:#f1e7ee}.meter::-webkit-progress-value{background:#b57795}.meter::-moz-progress-bar{background:#b57795}.notice{border:1px solid #ebcfcf;background:#fff7fa;color:var(--warn);border-radius:13px;font-size:12px;line-height:1.75;padding:13px 15px;margin:0 0 16px;overflow-wrap:anywhere}.error-details{font-size:11px;white-space:pre-wrap;overflow-wrap:anywhere;background:#fbf0f4;border-radius:8px;padding:9px;max-height:160px;overflow:auto}.error-actions{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:7px}.input-wrap textarea{width:100%;font-size:16px;line-height:1.85;border:1px solid var(--line);color:var(--ink);background:#fffdfd;border-radius:12px;padding:13px;min-height:184px;resize:vertical;display:block}.input-wrap textarea:focus,select:focus,input:focus{outline:2px solid #dab0c3;outline-offset:1px}textarea::placeholder{color:#baa5b3}.paste-button{margin-bottom:12px;background:#fcf0f6;color:var(--deep);border:1px solid #eedde7}.input-meta{display:flex;align-items:center;justify-content:space-between;gap:6px;margin:9px 0 3px;flex-wrap:wrap}.input-meta strong{font-size:12px;color:#9a6f88}.editor-options{display:flex;align-items:center;gap:3px}.generate{margin-top:11px}.settings summary,.list-card>summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;font-size:14px;font-weight:650;min-height:44px}.settings summary::-webkit-details-marker,.list-card>summary::-webkit-details-marker{display:none}.settings summary:after,.list-card>summary:after{content:'＋';font-size:17px;color:var(--muted);font-weight:400}.settings[open] summary:after,.list-card[open]>summary:after{content:'−'}.settings{padding:8px 21px}.setting-body{padding:10px 0 15px}.setting-row{display:flex;gap:10px;align-items:center;justify-content:space-between;margin:0 0 16px}.setting-row label{font-size:12px;font-weight:600}.setting-row select{font-size:16px;max-width:62%;border:1px solid var(--line);background:#fffdfd;border-radius:9px;padding:8px 11px;color:var(--ink)}.checkbox{display:flex;align-items:center;gap:9px;font-size:12px;color:var(--muted);margin-top:10px}.checkbox input{accent-color:#b57795;width:18px;height:18px;margin:0}.focus{border-radius:var(--radius);overflow:hidden;background:var(--deep);color:#fff;margin-bottom:16px}.focus-header{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:22px 23px 0;color:#d7c4cf;font-size:10px;letter-spacing:1px}.focus-header span:last-child{letter-spacing:0;color:var(--lime);font-size:11px}.focus-main{padding:17px 24px 21px;min-height:207px;display:flex;flex-direction:column;justify-content:center}.focus-meta{display:flex;justify-content:space-between;align-items:center;color:#d7c4cf;font-size:11px}.focus-meta .iconbtn{color:var(--lime);background:#ffffff09;width:38px;height:38px}.focus-text{font-size:27px;line-height:1.45;letter-spacing:-.25px;margin:10px 0;overflow-wrap:anywhere}.focus-translation{font-size:13px;color:#c0d4c9;margin:3px 0 0;white-space:pre-line}.focus-bottom{background:#8b5d76;padding:16px 23px}.focus-bottom .small-row{display:flex;align-items:center;justify-content:space-between;font-size:10px;color:#e7d8e1;gap:8px}.focus-progress{height:4px;width:100%;background:#ffffff19;overflow:hidden;border-radius:4px;margin:10px 0 12px}.focus-progress div{height:100%;width:0;background:var(--lime);transition:width .2s}.focus-cue{font-size:12px;color:#f3e8ee;min-height:22px}.blurred{filter:blur(8px);user-select:none}.reveal{font-size:11px;text-align:left;padding:4px 0;color:var(--lime);background:transparent;min-height:38px}.list-card{padding:8px 17px}.list-tools{display:flex;justify-content:space-between;gap:4px;border-top:1px solid var(--line);padding-top:7px;margin-top:6px}.list-tools .ghost{font-size:11px;padding:7px 6px}.sentences{list-style:none;padding:0;margin:2px 0 12px}.sentence{display:flex;align-items:flex-start;gap:9px;border-bottom:1px solid #f3e7ee;padding:14px 1px}.sentence:last-child{border:0}.sentence.current{background:var(--soft);border-radius:10px}.sentence input{margin:6px 0 0;accent-color:#b57795;width:17px;height:17px;flex:none}.sentence-body{flex:1;min-width:0}.sentence p{margin:0;font-size:14px;overflow-wrap:anywhere}.sentence .translation{font-size:11px;color:var(--muted);margin-top:4px}.sentence .clip-state{font-size:10px;color:var(--muted);margin-top:5px}.sentence .iconbtn{width:36px;height:38px}.starred{color:#b08377!important}.starred svg{fill:currentColor}.footer{border-top:1px solid var(--line);margin-top:22px;padding:18px 0;font-size:10px;color:var(--muted);text-align:center;line-height:1.85}.bottom{position:fixed;bottom:0;left:0;right:0;z-index:5;background:#fffffff0;border-top:1px solid var(--line);padding:9px 16px calc(13px + env(safe-area-inset-bottom));-webkit-backdrop-filter:blur(15px);backdrop-filter:blur(15px)}.bottom-inner{max-width:510px;margin:auto}.dock-top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:10px;color:var(--muted);margin-bottom:6px}.dock-top button{min-height:30px;padding:3px 5px;font-size:10px}.transport{display:flex;align-items:center;gap:8px}.transport .iconbtn{background:#fbf0f6;border:1px solid #ecdde7;color:#8a627d;width:45px;height:49px;flex:none}.play{flex:1;min-height:49px;background:var(--deep);color:var(--lime);font-size:14px;font-weight:700;border-radius:13px;display:flex;align-items:center;justify-content:center;gap:8px}.play svg{width:19px;height:19px}dialog{border:1px solid var(--line);border-radius:22px;padding:0;width:min(520px,calc(100% - 28px));max-height:85vh;max-height:85dvh;background:var(--paper);color:var(--ink)}dialog::backdrop{background:#8b5d7680}.dialog-head{position:sticky;top:0;z-index:1;background:#fff;border-bottom:1px solid var(--line);padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:10px}.dialog-head h2{font-size:17px;margin:0}.dialog-body{padding:20px}.dialog-body p,.dialog-body li{font-size:12px;line-height:1.85;color:var(--muted)}.dialog-body h3{font-size:14px;margin:22px 0 7px}.dialog-body h3:first-child{margin-top:0}.dialog-body strong{color:var(--ink)}.dialog-body a{overflow-wrap:anywhere}.dialog-body pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:11px;background:var(--soft);padding:12px;border-radius:10px}.library-tools{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:15px}.library-tools button{font-size:11px;min-height:42px;padding:9px 11px}.saved-lesson{display:flex;align-items:center;gap:8px;padding:13px;background:#fff;border:1px solid var(--line);border-radius:12px;margin:9px 0}.saved-lesson div{flex:1;min-width:0}.saved-lesson h3{font-size:13px;margin:0;overflow-wrap:anywhere}.saved-lesson p{font-size:10px;margin:4px 0 0}.saved-lesson button{font-size:11px;padding:8px 11px;min-height:40px}.saved-lesson .iconbtn{padding:0;width:35px}.toast{position:fixed;bottom:calc(135px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);background:#7f5a73;color:white;padding:11px 16px;border-radius:12px;font-size:12px;max-width:calc(100% - 28px);width:max-content;z-index:9;box-shadow:0 7px 24px #8f6f8622}.test-player{margin-top:12px}.test-player audio{width:100%;height:44px}.test-player p{font-size:11px;color:var(--muted);margin:5px 0}.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.editor-folded{font-size:13px;color:var(--muted);padding:6px 0 0}.loading-card{margin-bottom:16px}.status-pulse{animation:pulse 1.5s ease-in-out infinite}@keyframes pulse{50%{opacity:.5}}@media(min-width:900px){.shell{width:540px}.hero{padding-top:35px}.hero h1{font-size:34px}}@media(max-width:359px){.shell{width:calc(100% - 24px)}.brand{font-size:18px}.card{padding-left:16px;padding-right:16px}.hero h1{font-size:26px}.transport{gap:5px}.transport .iconbtn{width:40px}.focus-text{font-size:24px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
+.gpu-check{margin-top:12px}.gpu-check .outline{min-height:42px;font-size:12px}.diagnostics{border-top:1px solid var(--line);margin-top:13px;padding-top:9px}.diagnostics summary{font-size:12px;min-height:32px;cursor:pointer;color:var(--muted)}.diagnostics pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:150px;overflow:auto;font-size:10px;line-height:1.7;background:var(--soft);padding:10px;border-radius:9px}.status-line{flex-wrap:wrap}.section-head .pill{font-size:9px}#phaseClock{font-variant-numeric:tabular-nums}#stageLog:empty{display:none}
+
+/* v2.5: transparent speech/voice mark; no rounded plate, border or shadow. */
+.brandmark{width:40px;height:40px;flex:none;background:transparent;border:0;border-radius:0;overflow:visible;box-shadow:none}
+.brandmark .brand-logo{display:block;width:40px;height:40px;object-fit:contain}
+
+/* v2.4: two persistent panels; switching views never reconstructs the worker/audio. */
+body{padding-bottom:calc(24px + env(safe-area-inset-bottom))}body[data-screen=learn].has-study{padding-bottom:calc(142px + env(safe-area-inset-bottom))}
+.app-header{position:sticky;top:0;z-index:6;background:var(--paper);padding-top:env(safe-area-inset-top)}
+.topbar{height:65px;border:0}.screen-tabs{display:flex;gap:5px;background:#f8eef4;border:1px solid #eadbe4;padding:4px;border-radius:15px;margin:0 0 6px}
+.screen-tabs button{position:relative;flex:1;display:flex;align-items:center;justify-content:center;gap:7px;min-height:45px;padding:9px 7px;border-radius:11px;background:transparent;color:var(--muted);font-size:13px;font-weight:650;white-space:nowrap}
+.screen-tabs button[aria-selected=true]{background:#fff;color:var(--deep);box-shadow:0 2px 8px #8e66760b}.screen-tabs svg{width:17px;height:17px}
+.tab-badge{display:inline-flex;align-items:center;justify-content:center;min-width:19px;height:19px;line-height:19px;background:#f4e8ef;color:#916b83;border-radius:12px;padding:0 5px;font-size:10px;font-variant-numeric:tabular-nums}.screen-tabs button[aria-selected=false] .tab-badge{background:#efe2ea}
+.screen-panel{scroll-margin-top:128px;outline:none}.screen-panel:focus-visible{outline:2px solid #91b279;outline-offset:3px;border-radius:12px}
+.view-heading{display:flex;align-items:center;justify-content:space-between;gap:9px;padding:20px 1px 17px}.view-heading h1{font-size:25px;letter-spacing:-.9px;line-height:1.35;margin:0 0 7px;font-weight:730}.view-heading p:not(.eyebrow){font-size:12px;line-height:1.7;margin:0;color:var(--muted);word-break:keep-all}.view-heading .eyebrow{font-size:9px;letter-spacing:1.5px;margin:0 0 5px}
+.voice-chip{font-size:11px;border:1px solid #dce6d5;background:#eef4e7;border-radius:18px;padding:6px 10px;display:flex;align-items:center;gap:6px;flex:none}
+#inputCard{padding:18px 20px}#inputCard .section-head{margin-bottom:11px}#toggleEditor{min-height:32px}#sentenceInput{min-height:206px;max-height:310px;font-size:16px}#inputCard .input-meta{margin:8px 0 2px}#inputCard .editor-options .ghost{padding:6px;min-height:34px;font-size:10px}#inputCard .input-meta strong{font-size:11px}#inputCard .paste-button{min-height:44px;margin-bottom:11px}#inputCard .subtle{font-size:10px;line-height:1.7}#inputCard .generate{margin-top:10px}#inputCard .ready-link{margin-top:8px;min-height:42px;font-size:12px}
+.voice-options{padding:9px 20px}.voice-options>summary{display:flex;align-items:center;justify-content:space-between;gap:8px;cursor:pointer;list-style:none;min-height:47px;font-size:13px;font-weight:650}.voice-options>summary::-webkit-details-marker{display:none}.voice-options>summary:after{content:'＋';font-size:17px;color:var(--muted);font-weight:400}.voice-options[open]>summary:after{content:'−'}.voice-options>summary small{display:block;font-size:10px;color:var(--muted);font-weight:400;margin-top:1px}.voice-options>summary .micro{margin-left:auto}.voice-options .voice-explainer{margin:7px 0 0;border-top:1px solid var(--line);padding-top:13px}#setupCard{border:0;background:transparent;padding:17px 0 9px;margin:0}#setupCard .section-head h2{font-size:12px}#setupCard .voice-name{font-size:25px}#setupCard .setup-note{font-size:11px}#setupCard .test-player{margin-bottom:6px}
+#panelLearn .focus-main{min-height:247px;padding-top:18px;padding-bottom:22px}#panelLearn .focus-text{font-size:28px;line-height:1.46}#panelLearn .focus{margin-bottom:11px}#panelLearn .focus-header{padding-top:21px}#panelLearn .focus-bottom{padding-top:16px;padding-bottom:18px}
+.learn-tools{display:flex;justify-content:space-between;align-items:center;gap:6px;margin:0 0 16px}.learn-tools .outline{min-height:42px;padding:9px 12px;font-size:11px;border-radius:11px}.learn-tools .outline[aria-pressed=true]{background:var(--soft);border-color:#a1be8c}.learn-tools .ghost{min-height:42px;padding:7px 2px 7px 6px;font-size:10px;white-space:nowrap}.learn-tools .ghost span:last-child{font-size:16px}.study-tip,.prepare-note{font-size:10px;line-height:1.85;color:var(--muted);text-align:center;margin:16px 0 0;word-break:keep-all}
+.compact-work{display:flex;align-items:center;gap:4px;padding:10px 12px;border:1px solid #d8e4cd;background:#edf3e6;border-radius:13px;margin-bottom:12px}.compact-work>div{flex:1;min-width:0}.compact-work strong{display:block;font-size:11px;color:#45643c;line-height:1.6}.compact-work span{display:block;font-size:10px;color:var(--muted);overflow-wrap:anywhere}.compact-work .ghost{font-size:10px;min-height:38px;padding:7px}
+.needs-audio{background:#edf3e6;border:1px solid #dfe8d6;border-radius:13px;padding:14px;margin-bottom:16px}.needs-audio p{font-size:11px;color:var(--muted);margin:0 0 9px;line-height:1.7}.needs-audio button{font-size:12px;min-height:42px;background:#deeccf}
+.empty-study{padding:38px 23px;text-align:center}.empty-study h2{font-size:17px;letter-spacing:-.5px;margin:19px 0 10px}.empty-study p{font-size:12px;line-height:1.9;color:var(--muted);margin:0 0 25px}.empty-symbol{width:62px;height:62px;border-radius:20px;background:var(--soft);color:#567b46;display:inline-grid;place-items:center}.empty-symbol svg{width:29px;height:29px}
+.footer{font-size:9px;line-height:1.9;margin-top:22px;padding:15px 0 8px}.footer strong{font-weight:500}.bottom{z-index:7}body[data-screen=prepare] .toast,body:not(.has-study) .toast{bottom:calc(24px + env(safe-area-inset-bottom))}#workCard{scroll-margin-top:130px}.settings{scroll-margin-top:130px}#inputCard{scroll-margin-top:130px}
+@media(min-width:900px){.view-heading h1{font-size:28px}#panelLearn .focus-main{min-height:280px}}
+@media(max-width:359px){.screen-tabs button{font-size:12px}.view-heading h1{font-size:23px}#inputCard{padding:17px 16px}.learn-tools .outline{padding:8px 10px}#panelLearn .focus-text{font-size:25px}.learn-tools .ghost{font-size:9px}.voice-options{padding:9px 16px}#panelLearn .focus-main{padding-left:21px;padding-right:21px}}
+
+
+/* v3.0 rose theme overrides */
+.brand{color:var(--ink)}
+.brandmark{width:42px;height:42px;display:grid;place-items:center;background:transparent;border-radius:0;box-shadow:none;overflow:visible}
+.brandmark .brand-logo{width:42px;height:42px;display:block;object-fit:contain}
+.voice-hero{background:#fbf1f6;color:#8a627d}
+.primary{background:var(--deep);color:#fff}.primary:hover{background:#945f79}
+.secondary{background:#fbf4f7;color:var(--deep)}
+.outline{border-color:var(--line)}
+.focus{background:linear-gradient(180deg,#b07490 0%,#a16582 100%)}
+.focus-bottom{background:#8f6079}
+.bottom{background:#ffffffef}
+.play{background:var(--deep);color:#fff0f6}
+.transport .iconbtn{background:#fbf4f8}
+.section-head .step{background:#fff7fb}
+.notice{border-color:#ebd1d7;background:#fff8fb;color:#8a5c66}
+.screen-tabs button[aria-selected=true]{box-shadow:0 2px 8px rgba(166,100,129,.10)}
+
+</style>
+</head>
+<body data-screen="prepare">
+<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden"><defs>
+<symbol id="loop" viewBox="0 0 24 24"><path d="M3 10a9 9 0 0 1 15.5-6L21 7M21 2v5h-5M21 14A9 9 0 0 1 5.5 20L3 17M3 22v-5h5"/></symbol>
+<symbol id="play" viewBox="0 0 24 24"><path d="m8 5 11 7-11 7z" fill="currentColor" stroke="none"/></symbol>
+<symbol id="pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14" stroke-width="4"/></symbol>
+<symbol id="stop" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2" fill="currentColor" stroke="none"/></symbol>
+<symbol id="prev" viewBox="0 0 24 24"><path d="m19 5-10 7 10 7z" fill="currentColor" stroke="none"/><path d="M5 5v14" stroke-width="2.5"/></symbol>
+<symbol id="next" viewBox="0 0 24 24"><path d="m5 5 10 7-10 7z" fill="currentColor" stroke="none"/><path d="M19 5v14" stroke-width="2.5"/></symbol>
+<symbol id="star" viewBox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9z"/></symbol>
+<symbol id="paste" viewBox="0 0 24 24"><path d="M8 5H5a2 2 0 0 0-2 2v13h14v-3M16 5h3v5M8 3h8v4H8zM10 11h11v11H10z"/></symbol>
+<symbol id="folder" viewBox="0 0 24 24"><path d="M3 7V5a2 2 0 0 1 2-2h4l3 3h7a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM3 10h18"/></symbol>
+<symbol id="help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 2-3 4M12 17h.01"/></symbol>
+<symbol id="close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+<symbol id="download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/></symbol>
+<symbol id="trash" viewBox="0 0 24 24"><path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7M14 10v7"/></symbol>
+</defs></svg>
+<div class="shell">
+<div class="app-header"><header class="topbar"><div class="brand"><span class="brandmark" aria-hidden="true"><img class="brand-logo" width="40" height="40" alt="" decoding="async" src="data:image/png;base64,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"></span>English Loop</div><div class="top-actions"><button id="openLibrary" class="iconbtn" aria-label="문장 보관함"><svg><use href="#folder"/></svg></button><button id="openHelp" class="iconbtn" aria-label="사용 안내"><svg><use href="#help"/></svg></button></div></header>
+<div class="screen-tabs" role="tablist" aria-label="English Loop 화면">
+<button type="button" id="tabLearn" role="tab" aria-selected="false" aria-controls="panelLearn" tabindex="-1"><svg aria-hidden="true"><use href="#play"/></svg>학습<span id="learnTabBadge" class="tab-badge" hidden></span></button>
+<button type="button" id="tabPrepare" role="tab" aria-selected="true" aria-controls="panelPrepare" tabindex="0"><svg aria-hidden="true"><use href="#paste"/></svg>문장·설정</button>
+</div>
+</div>
+<noscript><div class="notice">JavaScript를 지원하는 Safari에서 배포된 웹 주소를 열어주세요.</div></noscript>
+<div id="notice" class="notice" role="status" hidden></div>
+<div id="errorBox" class="notice" role="alert" hidden><strong id="errorTitle"></strong><div id="errorMessage"></div><details><summary>오류 내용</summary><pre id="errorDetails" class="error-details"></pre></details><div class="error-actions"><button id="copyDiagnostic" class="ghost">진단 복사</button><button id="dismissError" class="ghost">닫기</button></div></div>
+<main id="workspace">
+<section id="panelLearn" class="screen-panel" role="tabpanel" aria-labelledby="tabLearn" tabindex="0" hidden>
+<div class="view-heading"><div><p class="eyebrow">LISTEN. SAY. REPEAT.</p><h1>오늘의 학습</h1><p id="learnSubtitle">여섯 문장에만 집중하세요.</p></div><span class="voice-chip"><span class="mini-dot"></span>Puck</span></div>
+<section class="card empty-study" id="studyEmpty"><span class="empty-symbol" aria-hidden="true"><svg><use href="#loop"/></svg></span><h2>오늘 연습할 문장을 넣어주세요.</h2><p>영어 6문장을 붙여넣고 음성을 만들면<br>이 화면에서 듣고, 따라 말할 수 있어요.</p><button id="emptyGoPrepare" class="primary full">문장 붙여넣기</button></section>
+<div id="studyContent" hidden>
+<div id="learnWork" class="compact-work" hidden><div><strong id="learnWorkTitle">음성 준비 중</strong><span id="learnWorkDetail">첫 문장을 준비하고 있어요.</span></div><button id="showWork" class="ghost">상세</button><button id="stopWorkCompact" class="ghost">중지</button></div>
+<section aria-label="반복 학습 플레이어" class="focus" id="player"><div class="focus-header"><span>LISTEN &amp; REPEAT</span><span id="playStatus">음성을 먼저 준비하세요</span></div><div class="focus-main"><div class="focus-meta"><span id="sentenceCounter">SENTENCE — / —</span><button aria-label="현재 문장 별표" aria-pressed="false" class="iconbtn" disabled="" id="currentStar"><svg><use href="#star"></use></svg></button></div><p class="focus-text" id="currentText" lang="en">Your next six sentences<br/>start here.</p><p class="focus-translation" id="currentTranslation"></p><button class="reveal" hidden="" id="revealText">영어 문장 보기</button></div><div class="focus-bottom"><div class="small-row"><span id="completedCount">0문장 듣기 완료</span><span id="repeatCount">문장마다 3회</span></div><div aria-label="듣기 진행률" aria-valuemax="100" aria-valuemin="0" aria-valuenow="0" class="focus-progress" id="learnProgress" role="progressbar"><div id="learnFill"></div></div><div class="focus-cue" id="playCue">음성 생성 후 학습 시작을 눌러주세요.</div></div></section>
+<div class="learn-tools"><button id="quickHide" type="button" class="outline" aria-pressed="false">영어 가리기</button><button id="editPlayback" type="button" class="ghost"><span id="learnSettings">1.0× · 3회 · 5초 쉼</span><span aria-hidden="true"> ›</span></button></div>
+<div id="learnNeedsAudio" class="needs-audio" hidden><p id="needsAudioText">아직 만들어지지 않은 음성이 있어요.</p><button id="prepareMissing" class="secondary full">문장·설정에서 음성 만들기</button></div>
+<details class="card list-card" id="listDetails"><summary>학습할 문장 <span class="micro" id="listCount">0개</span></summary><div class="list-tools"><button class="ghost" id="selectAll">전체 선택</button><button class="ghost" id="selectStars">별표만 선택</button><button class="ghost" id="saveLesson">보관함에 저장</button></div><ol class="sentences" id="sentenceList"></ol></details>
+<p class="study-tip">화면을 열어두고 학습하세요. 앱 전환·화면 잠금 시 멈춥니다.</p>
+</div>
+</section>
+<section id="panelPrepare" class="screen-panel" role="tabpanel" aria-labelledby="tabPrepare" tabindex="0">
+<div class="view-heading"><div><p class="eyebrow">YOUR NEXT SIX SENTENCES</p><h1>문장을 준비하세요.</h1><p>붙여넣고 소리를 만들면, 학습 화면으로.</p></div></div>
+<section aria-labelledby="inputTitle" class="card" id="inputCard"><div class="section-head"><h2 id="inputTitle">문장 붙여넣기</h2><button aria-controls="editorBody" aria-expanded="true" class="ghost" id="toggleEditor">접기</button></div><div id="editorBody"><button class="secondary paste-button full" id="pasteBtn"><svg><use href="#paste"></use></svg>복사한 6문장 붙여넣기</button><div class="input-wrap"><label class="sr-only" for="sentenceInput">학습할 영어 문장</label><textarea id="sentenceInput" maxlength="12000" placeholder="영어는 한 줄에 한 문장씩 넣으세요.
+
+Could you tell me more about your team?
+What problem are you trying to solve?
+Let’s keep in touch." spellcheck="false"></textarea></div><div class="input-meta"><strong id="draftCount">영어 6문장을 붙여넣어 주세요</strong><div class="editor-options"><button class="ghost" hidden="" id="undoPaste">되돌리기</button><button class="ghost" id="sampleBtn">예문 6개</button><button class="ghost" id="clearBtn">비우기</button></div></div><p class="subtle" id="pasteHint">버튼이 안 되면 입력창을 길게 눌러 붙여넣으세요. 번호는 제외하고 영어만 읽습니다.</p><button class="primary full generate" disabled="" id="generateBtn">문장 음성 만들기</button><p class="subtle" id="generationNote">이미 만든 문장의 소리는 다시 사용합니다.</p></div><div class="editor-folded" hidden="" id="editorSummary"></div><button id="goLearnReady" class="secondary full ready-link" hidden>학습 화면으로</button></section>
+<section aria-live="polite" class="card loading-card" hidden="" id="workCard"><div class="status-line"><strong id="workTitle">준비 중</strong><span class="micro" id="workElapsed">0초</span></div><p class="subtle" id="workDetail">필요한 파일을 확인하고 있어요.</p><progress aria-label="모델 파일 다운로드" class="meter" id="workProgress" max="100"></progress><p class="subtle" id="workHint">화면을 열어두세요. 중지는 언제든 가능합니다.</p><p class="subtle" id="phaseClock" role="timer">현재 단계 0초</p><button class="outline full" id="cancelWork" style="margin-top:9px">생성 중지 · 완성된 소리는 유지</button><button id="firstListen" class="primary full" style="margin-top:8px" hidden>첫 문장부터 먼저 듣기</button></section>
+<details class="card settings" id="settings"><summary>재생 설정 <span class="micro" id="settingsSummary">1.0× · 3회 · 5초 쉼</span></summary><div class="setting-body"><div class="setting-row"><label for="speed">듣는 속도</label><select id="speed"><option value="0.8">0.8× 천천히</option><option value="0.9">0.9×</option><option selected="" value="1">1.0× 자연스럽게</option><option value="1.1">1.1×</option></select></div><div class="setting-row"><label for="repeat">문장별 반복</label><select id="repeat"><option value="1">1회</option><option selected="" value="3">3회</option><option value="5">5회</option></select></div><div class="setting-row"><label for="gap">따라 말할 시간</label><select id="gap"><option value="0">쉼 없음</option><option value="3">3초</option><option selected="" value="5">5초</option><option value="8">8초</option></select></div><label class="checkbox"><input id="hideEnglish" type="checkbox"/>영어 문장 가리고 듣기</label><label class="checkbox"><input checked="" id="keepAwake" type="checkbox"/>학습 중 화면 켜두기 <span class="micro" id="wakeStatus">지원 기기</span></label><p class="subtle">속도는 생성된 소리의 재생 속도입니다. 목소리는 Puck으로 고정합니다.</p></div></details>
+<details class="card voice-options" id="voiceOptions"><summary><span>목소리 준비 <small>처음 테스트할 때만</small></span><span class="micro">Puck</span></summary><p class="subtle voice-explainer">매번 누를 필요는 없어요. 새 문장에 필요한 모델 준비는 자동으로 진행됩니다.</p>
+<section aria-labelledby="setupTitle" class="card" id="setupCard"><div class="section-head"><h2 id="setupTitle">Puck · 음성 테스트</h2><span class="pill" id="modelBadge">아직 준비 전</span></div><div class="voice-line"><div class="voice-name">Puck<small>WebGPU 실행 경로 · API 키 없음</small></div><div aria-hidden="true" class="bars"><i></i><i></i><i></i><i></i><i></i></div></div><button class="secondary full setup-action" id="testBtn"><svg><use href="#download"></use></svg><span id="testLabel">GPU로 한 문장 시험</span></button><p class="setup-note" id="setupNote"><strong>이번 GPU 모델은 약 326MB입니다.</strong> 이전 92.4MB 모델과 다른 파일이며 첫 실행은 Wi-Fi에서 해주세요. GPU 미지원 시 느린 CPU로 자동 전환하지 않습니다.</p>
+<div class="gpu-check"><button class="outline full" id="probeBtn">GPU만 확인 · 모델 다운로드 없음</button><p class="subtle" id="gpuResult" role="status">Safari가 실제로 GPU 연산을 허용하는지 확인합니다.</p></div>
+<details class="diagnostics" id="diagnosticPanel"><summary>실행 기록 · 느릴 때 확인</summary><p class="subtle" id="timingSummary">아직 실행 기록이 없습니다.</p><pre aria-label="실행 단계 기록" id="stageLog"></pre><button class="ghost" id="copyDiagnosticAlways">진단 복사 · 학습 문장 제외</button></details><div class="test-player" hidden="" id="testPlayer"><audio aria-label="Puck 테스트 음성" controls="" id="testAudio" playsinline="" preload="metadata"></audio><p id="testCaption"></p></div></section>
+</details>
+<p class="prepare-note">문장·설정은 이 브라우저에 저장됩니다.<br>보관함과 백업은 상단 폴더 버튼에서 확인하세요.</p>
+</section>
+</main>
+<footer class="footer"><strong>English Loop · Puck v3.1 · 2파일 버전</strong><br>AI 생성 음성 · WebGPU 시험판</footer>
+</div>
+<nav class="bottom" id="studyDock" aria-label="학습 재생 제어" hidden><div class="bottom-inner"><div class="dock-top"><span id="dockStatus">문장 음성을 먼저 만들어주세요</span><button id="editBtn" class="ghost">문장 바꾸기</button></div><div class="transport"><button id="previousBtn" class="iconbtn" aria-label="이전 문장" disabled><svg><use href="#prev"/></svg></button><button id="playBtn" class="play" disabled><svg><use href="#play" id="playIcon"/></svg><span id="playLabel">학습 시작</span></button><button id="nextBtn" class="iconbtn" aria-label="다음 문장" disabled><svg><use href="#next"/></svg></button><button id="stopBtn" class="iconbtn" aria-label="학습 정지" disabled><svg><use href="#stop"/></svg></button></div></div></nav>
+<audio id="studyAudio" preload="auto" playsinline hidden></audio>
+<dialog id="helpDialog" aria-labelledby="helpTitle"><div class="dialog-head"><h2 id="helpTitle">Puck 버전 사용 안내</h2><button class="iconbtn" data-close="helpDialog" aria-label="닫기"><svg><use href="#close"/></svg></button></div><div class="dialog-body">
+<h3>학습과 준비를 나누었어요</h3><p><strong>학습</strong>에는 현재 문장·재생·별표·문장 목록만, <strong>문장·설정</strong>에는 붙여넣기·음성 생성·재생 설정이 있습니다. 목소리 준비는 문장·설정 아래에서 필요할 때만 펼치세요. 매번 테스트할 필요는 없습니다.</p><p>새 문장을 모두 준비하면 학습 탭으로 이동합니다. 실제 재생은 학습 시작을 직접 눌러 시작합니다. 저장된 첫 문장 음성을 불러온 경우 다음 방문에는 학습 화면으로 열립니다. 페이지를 완전히 다시 열었을 때 지난 재생 위치까지 복원하는 기능은 아닙니다.</p><p>탭만 바꾸어도 음성 생성은 계속됩니다. 문장·설정으로 이동하면 학습 소리만 일시정지하며, 같은 페이지에서 돌아와 이어 들을 수 있습니다. 학습 중 생성 상태는 작은 상태 표시로 보이고 ‘상세’에서 전체 기록을 확인할 수 있습니다.</p><h3>GPU로 한 문장부터 확인하세요</h3><p><strong>GPU로 한 문장 시험</strong>은 GPU 확인 후 모델을 준비하고 짧은 예문을 새로 만듭니다. 이 시험은 저장된 음성을 재생하는 것이 아니라 매번 실제 생성을 측정합니다. GPU만 확인 버튼은 모델을 다운로드하지 않습니다. GPU 검사 통과가 Kokoro 실행 성공을 보장하지는 않습니다. 완료되면 나타나는 오디오의 ▶를 눌러 들어보세요. 사전 녹음 샘플이 아니라 이 기기에서 직접 생성한 결과입니다.</p>
+<h3>매일의 여섯 문장</h3><p>문장 붙여넣기 → <strong>문장 음성 만들기</strong> → <strong>학습 시작</strong>. 기본값은 1.0배속 · 3회 반복 · 매번 5초 쉼입니다. 6문장은 권장량이며, 시험판은 한 번에 최대 24문장, 한 줄 600자, 총 입력 12,000자를 허용합니다. 제한을 넘으면 안내하고, 내용을 잘라 버리지 않습니다.</p><p>영어는 한 줄에 한 문장. 한국어 뜻은 다음 줄 또는 <strong> | </strong> 뒤에 넣으면 화면에만 표시합니다. 번호·글머리표·명시적 마크다운 제목은 제외합니다. 일반 영어 제목은 문장으로 인식될 수 있으니 목록을 확인하세요. 자동 번역이나 발음 채점은 하지 않습니다.</p><p>긴 한 줄은 생성할 때 짧은 구간으로 나눈 뒤 이어 붙입니다. 새 문장의 전체 생성 대기는 최대 60초로 제한하며, 이 값은 오류 판정이 아닌 앱의 대기 상한입니다. 파일 다운로드·모델 초기화 시간은 별도입니다. 아주 긴 문장은 구간 사이의 억양이 달라질 수 있어요. 입력을 고치면 바뀐 문장만 다시 만들고, 같은 내용의 저장된 소리는 재사용합니다.</p>
+<h3>아이폰 사용과 중지</h3><p><strong>파일 미리보기가 아니라 GitHub Pages의 HTTPS 주소를 Safari에서 여세요.</strong> 음성 생성 중에는 화면을 열어두고, 처음에는 다른 탭을 줄이고 Wi-Fi에서 사용하세요. 첫 문장 음성이 완성되면 아래 재생 버튼으로 먼저 들을 수 있습니다. 같은 페이지에서 나머지 문장을 순서대로 생성합니다. 다음 문장이 아직 없으면 대기하고, 생성이 중지됐다면 이어 듣기는 준비된 문장에 한해 가능합니다. 화면 잠금·앱 전환 시 학습은 일시정지하고, 진행 중인 음성 생성은 중지합니다. 다시 눌러 완료된 소리는 재사용할 수 있어요.</p><p>읽다가 일시정지하면 이어 듣기 시 해당 문장의 처음부터 읽습니다. 쉼 도중에는 남은 쉼부터 이어갑니다. 이전·다음으로 건너뛴 문장은 완료로 세지 않습니다. 재생 위치는 페이지를 완전히 닫으면 복원되지 않습니다. 화면 켜두기는 지원되는 환경에서만 시도합니다.</p><p><strong>페이지가 갑자기 새로고침된다면</strong> 메모리 부족 또는 브라우저 제약일 수 있습니다. 자동으로 모델을 다시 실행하지 않습니다. 다른 탭을 닫고 한 문장만 시도해보세요. 계속 반복되면 이 기기에서는 시험을 멈추고 기존 단축어를 사용하세요.</p><p>소리가 안 들리면 볼륨과 이어폰 연결, 무음 설정을 확인하고 재생을 직접 누르세요. 이 버전에는 백그라운드 재생 보장이나 MP3 내보내기는 없습니다.</p>
+<h3>파일 다운로드·요금·개인정보</h3><p>사용한 모델은 <strong>Kokoro 82M v1.0 · fp32 · WebGPU</strong>, 목소리는 <strong>am_puck</strong>입니다. 모델 본체 약 326MB에 목소리·라이브러리·실행 파일 다운로드가 추가됩니다. 다운로드 전 웹을 여는 것만으로는 모델을 받지 않습니다. 유료 TTS API, 로그인, API 키, 광고, 분석 도구를 사용하지 않습니다. 인터넷 데이터 요금은 통신 요금제에 따릅니다.</p><p>실행 파일은 jsDelivr, 모델·목소리는 Hugging Face에서 받습니다. 이 서비스에는 파일 다운로드 접속 정보가 전달됩니다. <strong>학습 문장은 음성 생성 서버에 보내지 않고 이 기기에서 처리</strong>합니다. 학습 문장을 담은 공개 링크도 만들지 않습니다. 외부 파일을 못 받는 환경에서는 새 음성 생성이 실패할 수 있습니다.</p><p>GPU 모델은 이전 q8 모델과 다른 파일이라 별도 다운로드가 필요합니다. GPU 미지원이나 모델 실행 실패 시 CPU로 조용히 전환하거나 자동 재시도하지 않습니다. 모델 준비 전체 상한은 4분, 파일 진행이 멈추거나 초기화가 끝나지 않을 때도 단계별 대기 상한을 적용합니다. 모델은 라이브러리의 브라우저 캐시, 완성된 문장 음성은 별도 로컬 저장 공간에 재사용을 시도합니다. 브라우저가 저장 공간을 지우면 다시 받거나 만들어야 합니다. <strong>완전한 오프라인 앱은 아닙니다.</strong> 다시 열 때 실행 파일 등을 온라인으로 불러올 수 있어요.</p>
+<h3>이전 버전과 보관함</h3><p>같은 주소·브라우저의 이전 English Loop 문장과 보관함을 새 저장 공간으로 복사해 가져옵니다. <strong>이전 버전의 원본 저장 공간은 수정·삭제하지 않습니다.</strong> 이전 음성 선택은 가져오지 않으며 Puck을 사용합니다. 새 버전의 보관함은 최대 60세트입니다. 기존의 너무 긴 학습 세트는 불러와도 생성 제한에 따라 나누어야 합니다.</p><p>문장·설정·보관함 백업은 JSON 파일입니다. 생성 음성·모델·재생 위치는 백업에 포함되지 않습니다. PC와 휴대폰은 자동 동기화하지 않습니다. <strong>개인 백업 JSON 파일을 GitHub 공개 저장소에 올리지 마세요.</strong></p>
+<h3>홈 화면에 추가하기</h3><p>배포된 웹을 Safari에서 열고 <strong>공유 → 홈 화면에 추가 → 추가</strong>를 선택하세요. ‘웹 앱으로 열기’가 표시되면 켜세요. 앱 이름은 <strong>English Loop</strong>입니다. 아이콘은 선택한 장미·말풍선 로고입니다. 투명 배경의 상단 로고와 탭 아이콘은 HTML 안에 포함되어 있습니다.</p><p>ZIP을 해제한 뒤 <strong>index.html과 apple-touch-icon.png, 두 파일만 같은 위치에 올려주세요.</strong> 상단 로고·탭 아이콘·화면 스타일은 index.html에 포함됩니다. 홈 화면 아이콘용 PNG는 별도 파일로 유지합니다. 이전 장미 버전의 apple-touch-icon.png가 이미 있다면 index.html만 교체해도 됩니다. 기존 brand-transparent.png, favicon.png, icon-192.png, icon-512.png, manifest.webmanifest는 이 버전에서 참조하지 않습니다. 기존 홈 아이콘을 교체하기 전에는 보관함에서 문장을 먼저 백업하세요. 홈 화면 추가는 완전한 오프라인 사용이나 백그라운드 음성 생성을 보장하지 않습니다.</p>
+<h3>공개 소스와 라이선스</h3><p><a href="https://github.com/hexgrad/kokoro/tree/main/kokoro.js" target="_blank" rel="noopener noreferrer">Kokoro.js 공식 문서 · Apache-2.0</a><br><a href="https://huggingface.co/onnx-community/Kokoro-82M-v1.0-ONNX" target="_blank" rel="noopener noreferrer">모델·목소리 출처 · Apache-2.0</a><br><a href="https://www.jsdelivr.com/package/npm/kokoro-js" target="_blank" rel="noopener noreferrer">고정 라이브러리 버전: kokoro-js 1.2.1</a><br><a href="https://webkit.org/blog/17333/webkit-features-in-safari-26-0/" target="_blank" rel="noopener noreferrer">Safari 26 WebGPU 공식 안내</a></p><p>이 파일에는 타사 모델·라이브러리 자체를 포함하지 않습니다. 다운로드한 구성 요소는 각 프로젝트의 라이선스를 따릅니다.</p>
+<div class="library-tools" style="margin-top:20px"><button id="clearAudioCache" class="outline">저장된 문장 음성 삭제</button><button id="eraseData" class="outline">Puck 학습 내용 삭제</button></div><p>문장 음성 삭제는 이 앱의 음성만 지웁니다. 다른 앱의 모델 캐시나 이전 버전 데이터는 지우지 않습니다.</p>
+</div></dialog>
+<dialog id="libraryDialog" aria-labelledby="libraryTitle"><div class="dialog-head"><h2 id="libraryTitle">문장 보관함</h2><button class="iconbtn" data-close="libraryDialog" aria-label="닫기"><svg><use href="#close"/></svg></button></div><div class="dialog-body"><div class="library-tools"><button id="exportData" class="outline">문장 백업 저장</button><button id="importData" class="outline">백업 불러오기</button></div><input id="importFile" type="file" accept=".json,application/json" hidden><p>이 브라우저에 보관됩니다. 음성·모델은 백업에 포함되지 않습니다.</p><div id="libraryList"></div></div></dialog>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+<script type="text/plain" id="ttsWorker">
+'use strict';
+// Kokoro's documented WebGPU path. Keep the official pinned browser bundle.
+// CPU fallback is deliberately disabled at the application level.
+const LIBRARY='https://cdn.jsdelivr.net/npm/kokoro-js@1.2.1/dist/kokoro.web.js';
+const MODEL='onnx-community/Kokoro-82M-v1.0-ONNX';
+let tts=null, loading=null, busy=false, gpuInfo=null;
+const report=(id,type,data={})=>self.postMessage({id,type,...data});
+async function probe(id){
+  if(gpuInfo)return gpuInfo;
+  report(id,'stage',{stage:'gpu'});
+  if(!self.isSecureContext||!self.navigator.gpu)throw new Error('GPU_UNAVAILABLE: 이 실행 환경에서 WebGPU가 제공되지 않습니다. Safari의 HTTPS 웹 주소에서 여세요.');
+  const adapter=await navigator.gpu.requestAdapter({powerPreference:'high-performance'});
+  if(!adapter)throw new Error('GPU_UNAVAILABLE: Safari에서 사용할 GPU 어댑터를 얻지 못했습니다.');
+  // A tiny compute-and-readback test; no TTS files and no network requests.
+  const device=await adapter.requestDevice();
+  let storage=null, readback=null;
+  try{
+    storage=device.createBuffer({size:4,usage:GPUBufferUsage.STORAGE|GPUBufferUsage.COPY_SRC});
+    readback=device.createBuffer({size:4,usage:GPUBufferUsage.MAP_READ|GPUBufferUsage.COPY_DST});
+    const module=device.createShaderModule({code:'@group(0) @binding(0) var<storage,read_write> out: array<u32>; @compute @workgroup_size(1) fn main() { out[0] = 42u; }'});
+    const pipeline=await device.createComputePipelineAsync({layout:'auto',compute:{module,entryPoint:'main'}});
+    const bind=device.createBindGroup({layout:pipeline.getBindGroupLayout(0),entries:[{binding:0,resource:{buffer:storage}}]});
+    const enc=device.createCommandEncoder(), pass=enc.beginComputePass();pass.setPipeline(pipeline);pass.setBindGroup(0,bind);pass.dispatchWorkgroups(1);pass.end();enc.copyBufferToBuffer(storage,0,readback,0,4);device.queue.submit([enc.finish()]);
+    await readback.mapAsync(GPUMapMode.READ);const value=new Uint32Array(readback.getMappedRange())[0];readback.unmap();
+    if(value!==42)throw new Error('GPU_COMPUTE_FAILED: GPU 검사 결과가 올바르지 않습니다.');
+    gpuInfo={available:true,computeTest:true,shaderF16:adapter.features.has('shader-f16'),maxBufferSize:adapter.limits.maxBufferSize,maxStorageBufferBindingSize:adapter.limits.maxStorageBufferBindingSize};
+    return gpuInfo;
+  }finally{if(readback)readback.destroy();if(storage)storage.destroy();device.destroy();}
+}
+async function load(id){
+  if(tts)return tts;
+  if(!loading)loading=(async()=>{
+    await probe(id);
+    report(id,'stage',{stage:'library'});
+    const {KokoroTTS}=await import(LIBRARY);
+    report(id,'stage',{stage:'model'});
+    const instance=await KokoroTTS.from_pretrained(MODEL,{
+      dtype:'fp32',device:'webgpu',
+      progress_callback:info=>{const p=Number(info.progress);report(id,'progress',{file:String(info.file||''),status:String(info.status||''),progress:Number.isFinite(p)?p:null,loaded:Number(info.loaded)||0,total:Number(info.total)||0});}
+    });
+    tts=instance;return instance;
+  })().catch(error=>{loading=null;throw error;});
+  return loading;
+}
+self.onmessage=async({data})=>{
+  const {id,type}=data||{};if(!Number.isInteger(id))return;
+  if(busy){report(id,'error',{message:'BUSY: A previous request is still running.'});return;}
+  busy=true;
+  try{
+    if(type==='probe'){report(id,'probe-result',{gpu:await probe(id)});return;}
+    const model=await load(id);
+    if(type==='init'){report(id,'ready',{device:'webgpu',dtype:'fp32',gpu:gpuInfo});return;}
+    if(type!=='generate')throw new Error('Unknown worker request.');
+    if(typeof data.text!=='string'||!data.text.trim()||data.text.length>180)throw new Error('Invalid synthesis chunk.');
+    report(id,'stage',{stage:'generate'});
+    const started=performance.now();
+    const raw=await model.generate(data.text,{voice:'am_puck',speed:1});
+    const pcm=new Float32Array(raw.audio),rate=Number(raw.sampling_rate);
+    if(rate!==24000||!pcm.length||pcm.length>rate*90)throw new Error('The model returned invalid audio.');
+    for(let i=0;i<pcm.length;i++){if(!Number.isFinite(pcm[i]))throw new Error('The model returned non-finite audio.');}
+    self.postMessage({id,type:'audio',pcm,rate,elapsed:performance.now()-started,device:'webgpu',dtype:'fp32'},[pcm.buffer]);
+  }catch(error){report(id,'error',{message:String(error&&error.message||error).slice(0,1400)});}
+  finally{busy=false;}
+};
+
+</script>
+<script>
+'use strict';
+(() => {
+  const $ = id => document.getElementById(id);
+  const BUILD = 'Puck v2.5';
+  const KEY = 'english-loop:puck:2';
+  const MARKER = 'english-loop:puck:work';
+  const LEGACY = 'english-loop:v1';
+  const MAX_SENTENCES = 24, MAX_UNIT = 600, MAX_TOTAL = 12000, MAX_LIBRARY = 60;
+  const DEFAULTS = {rate:1, repeat:3, gap:5, hideEnglish:false, keepAwake:true};
+  const TEST_TEXT = 'Could you tell me more about your team?';
+  const EXAMPLE = [TEST_TEXT, 'What problem are you trying to solve?', 'Who are your main customers?',
+    'Could you say that again?', 'Let me think about it.', 'Let’s keep in touch.'].join('\n');
+  const CACHE_PREFIX = 'kokoro-js1.2.1|Kokoro-82M-v1.0|fp32|webgpu|am_puck|speed1|chunks160|';
+  const OLD_CACHE_PREFIX = 'kokoro-js1.2.1|Kokoro-82M-v1.0|q8|am_puck|speed1|chunks160|';
+  const normalize = text => text.normalize('NFC').replace(/\s+/g,' ').trim();
+  const cacheKey = text => CACHE_PREFIX + normalize(text);
+  const uid = () => crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36)+Math.random().toString(36).slice(2);
+  const ico = name => `<svg aria-hidden="true"><use href="#${name}"/></svg>`;
+  const sleep = ms => new Promise(resolve => setTimeout(resolve,ms));
+  let state = {version:2, title:'오늘의 영어', draft:'', settings:{...DEFAULTS}, stars:[], library:[]};
+  let storageOK = true, parseError = '', parsedIgnored = 0, sentences = [], selected = new Set();
+  let clips = new Map(), busy = false, activeWork = 0, toastTimer, workClock, workStart = 0;
+  let pasteUndo = null, clipboardBusy = false, parsedEpoch = 0, revealed = false;
+  let currentTab='prepare', navigationEpoch=0;
+  let wake = null, wakePending = false, lastError = '', testURL = null, audioURL = null;
+  let workLabel = '', workContext = '', migrationNotice = '', recoveredMarker = false;
+  const audio = $('studyAudio');
+  const testAudio = $('testAudio');
+  // Diagnostics are kept locally; never include source sentences in the report.
+  let phaseName='',phaseStarted=0,sessionApproval=false,workKind='',gpuBusy=false;
+  let generationStarted=0,modelStarted=0,diagnosticEvents=[];
+  let timings={modelSeconds:null,lastSentenceSeconds:null,audioSeconds:null};
+  function record(event,detail=''){
+    diagnosticEvents.push({at:new Date().toISOString(),event,detail});
+    if(diagnosticEvents.length>60)diagnosticEvents.shift();
+    $('stageLog').textContent=diagnosticEvents.map(e=>`${e.at.slice(11,19)} · ${e.event}${e.detail?' · '+e.detail:''}`).join('\n');
+    const t=timings;$('timingSummary').textContent=[t.modelSeconds!==null?`모델 준비 ${t.modelSeconds.toFixed(1)}초`:'',t.lastSentenceSeconds!==null?`최근 문장 생성 ${t.lastSentenceSeconds.toFixed(1)}초`:'',t.audioSeconds!==null?`음성 길이 ${t.audioSeconds.toFixed(1)}초`:''].filter(Boolean).join(' / ')||'GPU 확인과 다운로드·모델 준비·음성 생성을 구분해 기록합니다.';
+  }
+  function setPhase(name){if(phaseName!==name){phaseName=name;phaseStarted=performance.now();record(name);}updatePhaseClock();}
+  function updatePhaseClock(){const seconds=phaseStarted?Math.floor((performance.now()-phaseStarted)/1000):0;$('phaseClock').textContent=`${phaseName||'준비'} · 이 단계 ${seconds}초`;syncTabs();}
+  async function cachedClip(key){
+    const found=await cache.get(key);if(found)return found;
+    if(key.startsWith(CACHE_PREFIX))return cache.get(OLD_CACHE_PREFIX+key.slice(CACHE_PREFIX.length));
+    return null;
+  }
+
+  function toast(text) {
+    clearTimeout(toastTimer); $('toast').textContent=text; $('toast').hidden=false;
+    toastTimer=setTimeout(()=>$('toast').hidden=true,4500);
+  }
+  function notice(text) {$('notice').textContent=text; $('notice').hidden=!text;}
+  function showError(error, title='음성을 준비하지 못했어요') {
+    const raw=String(error && error.message || error || 'Unknown error');
+    lastError=raw.slice(0,1400);
+    let message='다른 탭을 닫고 한 문장 테스트부터 다시 시도하세요. 계속 실패하면 기존 단축어를 사용하고, 아래 오류 내용을 확인해주세요.';
+    if (/fetch|network|import|load failed|404|CDN/i.test(raw)) message='실행 파일 또는 모델 다운로드에 실패했습니다. Wi-Fi 연결과 콘텐츠 차단 설정을 확인하고 다시 시도하세요. 학습 문장은 그대로 남아 있습니다.';
+    if (/memory|allocation|out.of.bounds|wasm.*abort/i.test(raw)) message='기기 메모리 또는 브라우저 실행 제한일 수 있습니다. 다른 탭을 닫고 한 문장만 시도하세요. 계속 반복되면 이 기기에서 시험을 중단하세요.';
+    if (/timeout|시간.*초과/i.test(raw)) message='기다리는 시간을 제한하기 위해 작업을 중지했습니다. 60초는 고장 판정이 아니라 이 앱의 문장 생성 상한입니다. 실행 기록에서 파일 준비와 문장 생성 중 어느 단계인지 확인하세요. 같은 단계에서 반복되면 재시도하지 말고 진단을 복사해주세요.';
+    if (/GPU_UNAVAILABLE|GPU_COMPUTE_FAILED/i.test(raw)) message='이 페이지의 GPU 검사에 실패했습니다. Safari에서 HTTPS 주소를 직접 열어 확인하세요. 느린 CPU 방식으로 자동 전환하지 않았으며, 모델 다운로드도 시작하지 않았습니다.';
+    if (/webgpu|gpu.*device|shader|pipeline/i.test(raw)&&!/GPU_UNAVAILABLE|GPU_COMPUTE_FAILED/i.test(raw)) message='GPU 경로에서 모델 실행이 실패했습니다. GPU 검사가 성공해도 모델 호환성은 별개입니다. CPU로 자동 전환하지 않았어요. 반복 시도 대신 진단을 복사해주세요.';
+    record('중지 또는 오류',lastError.slice(0,350));
+    if (/https|file:/i.test(raw)) message='내려받은 파일 미리보기 대신 GitHub Pages에 올린 웹 주소를 Safari에서 열어주세요.';
+    $('errorTitle').textContent=title; $('errorMessage').textContent=message; $('errorDetails').textContent=lastError;
+    $('errorBox').hidden=false;
+  }
+  function settingsOf(raw={}) {
+    return {rate:[.8,.9,1,1.1].includes(Number(raw.rate))?Number(raw.rate):1,
+      repeat:[1,3,5].includes(Number(raw.repeat))?Number(raw.repeat):3,
+      gap:[0,3,5,8].includes(Number(raw.gap))?Number(raw.gap):5,
+      hideEnglish:raw.hideEnglish===true || raw.hideText===true, keepAwake:raw.keepAwake!==false};
+  }
+  function lessonOf(item) {
+    if (!item || typeof item.draft!=='string' || item.draft.length>60000) throw new Error('잘못된 보관함 형식입니다.');
+    return {id:uid(), title:typeof item.title==='string'?item.title.slice(0,80):'영어 연습', draft:item.draft,
+      savedAt:Number.isFinite(item.savedAt)?item.savedAt:Date.now(),
+      stars:Array.isArray(item.stars)?item.stars.filter(t=>typeof t==='string'&&t.length<=2000).slice(0,200):
+        (Array.isArray(item.sentences)?item.sentences.filter(s=>s&&s.starred&&typeof s.text==='string').map(s=>s.text):[])};
+  }
+  function loadState() {
+    try {
+      recoveredMarker=Boolean(localStorage.getItem(MARKER));
+      localStorage.removeItem(MARKER);
+      const raw=localStorage.getItem(KEY); const old=!raw && localStorage.getItem(LEGACY);
+      const data=raw?JSON.parse(raw):old?JSON.parse(old):null;
+      if (!data) return;
+      if (raw && data.version!==2) throw new Error('Unsupported data version');
+      if (old && data.version!==1) return;
+      if (typeof data.draft!=='string' || data.draft.length>60000) throw new Error('Invalid draft');
+      state.draft=data.draft; state.title=typeof data.title==='string'?data.title.slice(0,80):'오늘의 영어';
+      state.settings=settingsOf(data.settings || {});
+      if (old) state.settings.rate=1;
+      state.stars=Array.isArray(data.stars)?data.stars.filter(t=>typeof t==='string').slice(0,4000):
+        (Array.isArray(data.sentences)?data.sentences.filter(s=>s&&s.starred&&typeof s.text==='string').map(s=>s.text):[]);
+      if (Array.isArray(data.library)) state.library=data.library.slice(0,MAX_LIBRARY).map(lessonOf);
+      if (old) migrationNotice='이전 버전의 문장·보관함을 복사해 가져왔어요. 이전 데이터는 그대로 유지됩니다.';
+    } catch(error) {storageOK=false; migrationNotice='저장 데이터를 읽지 못했습니다. 이전 저장 내용은 삭제하지 않았어요. 백업 파일이 있다면 보관함에서 불러오세요.';}
+  }
+  function persist() {
+    if (!storageOK) return;
+    try {localStorage.setItem(KEY,JSON.stringify(state));}
+    catch(error) {storageOK=false; notice('브라우저 저장 공간을 사용할 수 없습니다. 보관함에서 문장 백업을 저장하세요.');}
+  }
+  function markWork(value) {try {value?localStorage.setItem(MARKER,JSON.stringify({started:Date.now(),build:BUILD})):localStorage.removeItem(MARKER);}catch(error){}}
+  function cleanLine(raw) {
+    return raw.trim().replace(/\*\*/g,'').replace(/^[①②③④⑤⑥⑦⑧⑨⑩]\s*/,'')
+      .replace(/^(?:[-*•–—>]\s+|\d{1,3}[.)、]\s*|\(\d{1,3}\)\s*|\[\d{1,3}\]\s*)/,'')
+      .replace(/^(?:EN(?:GLISH)?|영어)\s*[:：]\s*/i,'').trim();
+  }
+  function parse(text) {
+    if (text.length>MAX_TOTAL) throw new Error('총 입력은 12,000자까지예요. 내용을 나누어주세요.');
+    const result=[]; let ignored=0;
+    for (const raw of text.replace(/\r\n?/g,'\n').split('\n')) {
+      let line=cleanLine(raw); if (!line) continue;
+      if (/^#{1,6}\s|^[-=_]{3,}$|^```/.test(line)) {ignored++; continue;}
+      if (/^(?:KO(?:REAN)?|뜻|해석|번역|한국어)\s*[:：]/i.test(line)) {
+        const t=line.replace(/^(?:KO(?:REAN)?|뜻|해석|번역|한국어)\s*[:：]\s*/i,'');
+        if (result.length) result[result.length-1].translation += (result[result.length-1].translation?'\n':'')+t;
+        else ignored++;
+        continue;
+      }
+      const pipe=line.indexOf('|'); let english=pipe<0?line:line.slice(0,pipe).trim();
+      let translation=pipe<0?'':line.slice(pipe+1).trim();
+      const pair=english.match(/^(.*?)\s+(?:[-–—]|→)\s+([가-힣].*)$/);
+      if (pair) {english=pair[1].trim();translation=translation||pair[2].trim();}
+      const lat=(english.match(/[A-Za-z]/g)||[]).length, ko=(english.match(/[가-힣]/g)||[]).length;
+      if (!lat || (pipe<0 && ko>lat)) {
+        if (ko && result.length) result[result.length-1].translation+=(result[result.length-1].translation?'\n':'')+english;
+        else ignored++;
+        continue;
+      }
+      if (/[가-힣]/.test(english)) throw new Error('영어와 한국어 뜻을 같은 줄에 넣을 때는 | 로 구분해주세요.');
+      if (english.length>MAX_UNIT) throw new Error('너무 긴 줄이 있어요. 한 줄 600자 이하로 나눠주세요.');
+      if (result.length>=MAX_SENTENCES) throw new Error('시험판은 한 번에 최대 24문장이에요. 나누어 넣어주세요.');
+      if (english.split(/\s+/).some(w=>w.length>160)) throw new Error('너무 긴 단어나 주소가 있어요. 일반 영어 문장으로 넣어주세요.');
+      result.push({id:String(result.length),text:english,translation,key:cacheKey(english)});
+    }
+    return {sentences:result,ignored};
+  }
+  function chunks(text) {
+    // Bound individual inference requests without truncating the source text.
+    const parts=[]; let current='';
+    for (const word of normalize(text).split(' ')) {
+      if ((current?current.length+1:0)+word.length>160) {if(current)parts.push(current);current=word;}
+      else current+=(current?' ':'')+word;
+    }
+    if(current)parts.push(current);
+    return parts;
+  }
+
+  // Separate IndexedDB for generated audio. No modification of legacy app or model caches.
+  const cache = {
+    memory:new Map(), dbPromise:null, warned:false,
+    async db() {
+      if(!window.indexedDB)throw new Error('IndexedDB unavailable');
+      if(!this.dbPromise)this.dbPromise=new Promise((resolve,reject)=>{
+        const req=indexedDB.open('english-loop-puck-audio-v2',1);
+        req.onupgradeneeded=()=>{const store=req.result.createObjectStore('clips',{keyPath:'key'});store.createIndex('createdAt','createdAt');};
+        req.onsuccess=()=>{req.result.onversionchange=()=>req.result.close();resolve(req.result);};
+        req.onerror=()=>reject(req.error);req.onblocked=()=>reject(new Error('Storage blocked by another tab'));
+      });
+      return this.dbPromise;
+    },
+    valid(v){return v && v.blob instanceof Blob && v.blob.type==='audio/wav' && v.blob.size>44 && v.blob.size<12000000 && v.rate===24000 && Number.isFinite(v.duration);},
+    async get(key) {
+      if(this.memory.has(key))return this.memory.get(key);
+      try {
+        const db=await this.db();
+        const value=await new Promise((resolve,reject)=>{const tx=db.transaction('clips','readonly');const r=tx.objectStore('clips').get(key);r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error);});
+        if(this.valid(value)){this.remember(key,value);return value;}
+      }catch(error){}
+      return null;
+    },
+    remember(key,value){this.memory.delete(key);this.memory.set(key,value);while(this.memory.size>60)this.memory.delete(this.memory.keys().next().value);},
+    async put(key,value) {
+      const entry={key,blob:value.blob,rate:24000,duration:value.duration,createdAt:Date.now()};this.remember(key,entry);
+      try {
+        const db=await this.db();
+        await new Promise((resolve,reject)=>{const tx=db.transaction('clips','readwrite');tx.objectStore('clips').put(entry);tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error);tx.onabort=()=>reject(tx.error);});
+        // Keep the most recent 60 sentence clips. Blob storage is browser-managed.
+        const tx=db.transaction('clips','readwrite'),store=tx.objectStore('clips'),count=store.count();
+        count.onsuccess=()=>{let excess=count.result-60;if(excess<=0)return;const cur=store.index('createdAt').openCursor();cur.onsuccess=()=>{const c=cur.result;if(c&&excess>0){c.delete();excess--;c.continue();}};};
+      }catch(error){if(!this.warned){this.warned=true;toast('생성된 소리는 현재 화면에서 재생할 수 있지만, 장기 저장은 지원되지 않아요.');}}
+      return entry;
+    },
+    async clear(){this.memory.clear();try{const db=await this.db();await new Promise((resolve,reject)=>{const tx=db.transaction('clips','readwrite');tx.objectStore('clips').clear();tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error);});}catch(error){throw new Error('저장 공간을 지우지 못했어요. 브라우저의 사이트 데이터 설정을 확인하세요.');}}
+  };
+
+  // A worker can be terminated even when native/WASM work stops responding.
+  class TTSClient {
+    constructor(){this.worker=null;this.url=null;this.seq=0;this.pending=new Map();this.ready=false;this.gpu=null;}
+    create(){
+      if(this.worker)return;
+      if(!/^https?:$/.test(location.protocol)||!window.isSecureContext)throw new Error('HTTPS 웹 주소에서 열어주세요. file: 미리보기에서는 실행하지 않습니다.');
+      if(!window.Worker||!window.WebAssembly)throw new Error('이 브라우저는 모델 실행 기능을 지원하지 않습니다.');
+      this.url=URL.createObjectURL(new Blob([$('ttsWorker').textContent],{type:'text/javascript'}));
+      try{this.worker=new Worker(this.url,{type:'module',name:'EnglishLoop-Puck-GPU'});}catch(error){URL.revokeObjectURL(this.url);this.url=null;throw error;}
+      this.worker.onmessage=event=>{
+        const data=event.data||{},p=this.pending.get(data.id);if(!p)return;
+        if(data.type==='progress'||data.type==='stage'){
+          if(data.type==='stage'&&p.lastStage!==data.stage){p.lastStage=data.stage;this.armIdle(p,data.stage==='model'?90000:45000);}
+          if(data.type==='progress'){
+            const previous=p.loaded.get(data.file)||0;
+            if(data.loaded>previous){p.loaded.set(data.file,data.loaded);this.armIdle(p,45000);}
+            if(data.status==='done'&&/\.onnx(?:$|\?)/.test(data.file))this.armIdle(p,90000);
+          }
+          p.progress(data);return;
+        }
+        clearTimeout(p.timer);clearTimeout(p.idle);this.pending.delete(data.id);
+        if(data.type==='error'){p.reject(new Error(data.message||'Model error'));return;}
+        if(data.type==='ready')this.ready=true;if(data.gpu)this.gpu=data.gpu;
+        p.resolve(data);
+      };
+      this.worker.onerror=event=>{event.preventDefault();this.abort(new Error(event.message||'모델 작업 스레드 실행에 실패했어요.'));};
+      this.worker.onmessageerror=()=>this.abort(new Error('모델 결과를 읽지 못했어요.'));
+    }
+    armIdle(p,ms){if(p.type!=='init')return;clearTimeout(p.idle);p.idle=setTimeout(()=>this.abort(new Error(`모델 준비 시간 초과: ${p.lastStage||'초기화'} 단계 응답/다운로드 진행이 ${Math.round(ms/1000)}초 동안 없습니다.`)),ms);}
+    request(type,payload={},progress=()=>{},limit=null){
+      this.create();if(this.pending.size)throw new Error('이전 음성 작업이 진행 중입니다.');
+      const id=++this.seq,maximum=limit||(type==='probe'?15000:type==='init'?240000:60000);
+      return new Promise((resolve,reject)=>{
+        const text=type==='probe'?'GPU 확인 시간 초과 (15초)':type==='init'?'모델 준비 전체 시간 초과 (4분)':'문장 음성 생성 시간 초과 (문장당 60초 상한)';
+        const p={resolve,reject,type,progress,timer:setTimeout(()=>this.abort(new Error(text)),maximum),idle:null,lastStage:'',loaded:new Map()};
+        this.pending.set(id,p);this.armIdle(p,45000);
+        try{this.worker.postMessage({id,type,...payload});}catch(error){clearTimeout(p.timer);clearTimeout(p.idle);this.pending.delete(id);reject(error);}
+      });
+    }
+    async probe(progress=progressUpdate){if(!this.gpu){const data=await this.request('probe',{},progress);this.gpu=data.gpu;}return this.gpu;}
+    async init(progress){
+      if(this.ready)return;
+      await this.probe(progress);
+      $('gpuResult').textContent='GPU 계산 검사 통과 · Kokoro 모델 실행은 별도 확인';
+      if(!sessionApproval){
+        if(!confirm('GPU용 모델은 약 326MB이며 이전 CPU 모델(92.4MB)과 다른 파일입니다. 캐시에 없으면 추가 실행 파일과 함께 다운로드합니다. Wi-Fi에서 한 문장 시험을 진행할까요?'))throw new DOMException('다운로드를 취소했습니다.','AbortError');
+        sessionApproval=true;
+      }
+      modelStarted=performance.now();await this.request('init',{},progress);
+      timings.modelSeconds=(performance.now()-modelStarted)/1000;record('GPU 경로 모델 준비 완료',`${timings.modelSeconds.toFixed(1)}초 · WebGPU/fp32 요청`);
+    }
+    abort(error=new DOMException('사용자가 중지했습니다.','AbortError')){
+      for(const p of this.pending.values()){clearTimeout(p.timer);clearTimeout(p.idle);p.reject(error);}this.pending.clear();
+      if(this.worker)this.worker.terminate();this.worker=null;this.ready=false;this.gpu=null;
+      if(this.url)URL.revokeObjectURL(this.url);this.url=null;updateModelBadge();
+    }
+  }
+  const client=new TTSClient();
+  function updateModelBadge(){$('modelBadge').textContent=client.ready?'GPU 경로 준비됨':busy?'준비 중':'GPU 시험판';}
+  function progressUpdate(data){
+    if(!busy)return;
+    const title=$('workTitle'),detail=$('workDetail'),bar=$('workProgress');
+    if(data.type==='stage'){
+      const stages={gpu:['GPU 확인','WebGPU 연산 가능 여부를 확인합니다. 모델 다운로드는 하지 않습니다.'],library:['실행 파일 준비','Kokoro 공개 라이브러리를 불러옵니다.'],model:['모델 파일 / 실행 준비','fp32 모델 캐시 확인 · 없으면 약 326MB 다운로드'],generate:['문장 음성 생성',`${workContext||'테스트 문장'} · Puck · WebGPU 경로`]},item=stages[data.stage];
+      if(item){setPhase(item[0]);title.textContent=item[0];detail.textContent=item[1];}
+      bar.hidden=data.stage==='generate';bar.removeAttribute('value');
+    }else if(data.type==='progress'&&/\.onnx(?:$|\?)/.test(data.file)){
+      if(data.status==='progress'&&data.progress!==null){setPhase('모델 파일 다운로드');title.textContent='모델 파일 다운로드';bar.hidden=false;bar.value=Math.max(0,Math.min(100,data.progress));detail.textContent=data.total?`${(data.loaded/1e6).toFixed(1)} / ${(data.total/1e6).toFixed(1)} MB · 이 파일 ${Math.round(data.progress)}%`:'모델 파일을 받는 중입니다.';}
+      else if(data.status==='done'){setPhase('모델 실행 준비');title.textContent='모델 실행 준비';bar.hidden=false;bar.removeAttribute('value');detail.textContent='파일 수신 완료 · GPU 실행에 필요한 초기화 작업 중입니다.';}
+    }
+  }
+  async function probeGPU(){
+    if(busy||gpuBusy)return;gpuBusy=true;
+    const id=beginWork('GPU만 확인');workKind='probe';
+    try{const info=await client.probe();checkWork(id);$('gpuResult').textContent=info.computeTest?'GPU 계산 검사 통과 · 모델 다운로드 없음':'GPU 검사 결과를 확인해주세요.';record('GPU 계산 검사 통과','모델 다운로드 없음');toast('GPU 연산 검사에 통과했어요. 모델 호환성과 속도는 한 문장 시험으로 확인하세요.');}
+    catch(error){if(id===activeWork&&error.name!=='AbortError'){client.abort();$('gpuResult').textContent='GPU 확인 실패 · CPU로 자동 전환하지 않음';showError(error,'GPU를 확인하지 못했어요');}}
+    finally{gpuBusy=false;finishWork(id);}
+  }
+  async function lockScreen() {
+    if(!state.settings.keepAwake||!navigator.wakeLock||!isSecureContext||document.hidden||wake||wakePending||(!busy&&!engine.running()))return;
+    wakePending=true;
+    try{const v=await navigator.wakeLock.request('screen');if(document.hidden||(!busy&&!engine.running())||!state.settings.keepAwake){await v.release();return;}wake=v;$('wakeStatus').textContent='유지 중';v.addEventListener('release',()=>{if(wake===v)wake=null;$('wakeStatus').textContent='지원 기기';});}
+    catch(error){$('wakeStatus').textContent='현재 유지 불가';}finally{wakePending=false;}
+  }
+  function releaseScreen(){const v=wake;wake=null;if(v)v.release().catch(()=>{});$('wakeStatus').textContent=navigator.wakeLock?'지원 기기':'미지원';}
+  function beginWork(label) {
+    const id=++activeWork;busy=true;workLabel=label;workStart=performance.now();phaseName='';setPhase('저장된 음성 확인');workKind='';workContext='';
+    engine.stop();testAudio.pause();markWork(true);persist();$('errorBox').hidden=true;
+    $('workCard').hidden=false;$('workTitle').textContent=label;$('workDetail').textContent='저장된 음성을 확인합니다.';
+    $('workProgress').removeAttribute('value');$('workProgress').hidden=false;
+    clearInterval(workClock);workClock=setInterval(()=>{
+      const seconds=Math.floor((performance.now()-workStart)/1000);$('workElapsed').textContent=seconds>=60?`${Math.floor(seconds/60)}분 ${seconds%60}초`:`${seconds}초`;
+      updatePhaseClock();$('workHint').textContent=phaseName==='문장 음성 생성'?'문장 생성은 전체 구간 합계 최대 60초로 제한합니다. 30초가 지나도 번호가 바뀌지 않으면 중지해도 됩니다.':'다운로드·모델 준비는 문장 생성과 별도입니다. 화면을 열어두세요.';
+    },500);
+    $('workElapsed').textContent='0초';updateControls();lockScreen();return id;
+  }
+  function finishWork(id) {
+    if(id!==activeWork)return;
+    busy=false;markWork(false);clearInterval(workClock);$('workCard').hidden=true;
+    if(!engine.running())releaseScreen();
+    if(engine.status==='waiting'){engine.status='paused';engine.reason='missing-audio';}
+    updateControls();updateModelBadge();
+  }
+  function cancelWork(reason='작업을 중지했어요. 완성된 문장 음성은 남아 있어요.') {
+    if(!busy)return;
+    const id=activeWork;record('사용자 / 화면 전환 중지',phaseName);client.abort();finishWork(id);activeWork++;toast(reason);
+  }
+  function checkWork(id){if(id!==activeWork||!busy)throw new DOMException('Canceled','AbortError');}
+  function wavFromParts(parts) {
+    const rate=24000,gap=2400;
+    let length=parts.reduce((a,p)=>a+p.length,0)+Math.max(0,parts.length-1)*gap;
+    const buffer=new ArrayBuffer(44+length*2),v=new DataView(buffer);
+    const ascii=(o,s)=>{for(let i=0;i<s.length;i++)v.setUint8(o+i,s.charCodeAt(i));};
+    ascii(0,'RIFF');v.setUint32(4,36+length*2,true);ascii(8,'WAVE');ascii(12,'fmt ');v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,1,true);v.setUint32(24,rate,true);v.setUint32(28,rate*2,true);v.setUint16(32,2,true);v.setUint16(34,16,true);ascii(36,'data');v.setUint32(40,length*2,true);
+    let offset=44;
+    parts.forEach((p,j)=>{if(j)offset+=gap*2;for(let i=0;i<p.length;i++){const f=Math.max(-1,Math.min(1,p[i]));v.setInt16(offset,Math.round(f<0?f*32768:f*32767),true);offset+=2;}});
+    return {blob:new Blob([buffer],{type:'audio/wav'}),rate,duration:length/rate};
+  }
+  async function synthesize(text,id,label,{force=false}={}){
+    const key=cacheKey(text),cached=force?null:await cachedClip(key);checkWork(id);
+    if(cached){record('저장된 문장 음성 재사용');return{clip:cached,reused:true,seconds:0};}
+    await client.init(progressUpdate);checkWork(id);updateModelBadge();
+    const input=chunks(text),out=[];let time=0;
+    generationStarted=performance.now();const deadline=generationStarted+60000;
+    for(let i=0;i<input.length;i++){
+      checkWork(id);setPhase('문장 음성 생성');$('workTitle').textContent=label;
+      $('workDetail').textContent=`Puck · WebGPU 경로${input.length>1?` · ${i+1}/${input.length}구간`:''}`;$('workProgress').hidden=true;
+      const remaining=deadline-performance.now();if(remaining<=0)throw new Error('문장 음성 생성 시간 초과 (문장당 60초 상한)');
+      const value=await client.request('generate',{text:input[i]},progressUpdate,remaining);checkWork(id);
+      if(!(value.pcm instanceof Float32Array)||value.rate!==24000)throw new Error('음성 데이터 형식이 올바르지 않습니다.');
+      out.push(value.pcm);time+=Number(value.elapsed)||0;
+    }
+    setPhase('완성 음성 저장');const clip=await cache.put(key,wavFromParts(out));checkWork(id);
+    timings.lastSentenceSeconds=(performance.now()-generationStarted)/1000;timings.audioSeconds=clip.duration;
+    record('문장 생성 완료',`${timings.lastSentenceSeconds.toFixed(1)}초 · 음성 ${clip.duration.toFixed(1)}초`);
+    return{clip,reused:false,seconds:timings.lastSentenceSeconds};
+  }
+  async function testVoice() {
+    if(busy)return;
+    const id=beginWork('GPU 한 문장 시험');workKind='test';
+    $('workCard').scrollIntoView({behavior:'smooth',block:'center'});
+    try{
+      const result=await synthesize(TEST_TEXT,id,'Puck 테스트 음성 생성',{force:true});checkWork(id);
+      if(testURL)URL.revokeObjectURL(testURL);testURL=URL.createObjectURL(result.clip.blob);testAudio.src=testURL;
+      $('testPlayer').hidden=false;$('testLabel').textContent='GPU 한 문장 다시 시험 · 새로 생성';
+      $('testCaption').textContent=result.reused?'저장된 Puck 테스트 음성을 불러왔어요. ▶를 눌러 들어보세요.':`이 기기에서 생성 완료 · 계산 ${result.seconds.toFixed(1)}초 · 음성 ${result.clip.duration.toFixed(1)}초. ▶를 눌러 들어보세요.`;
+      clips.set(cacheKey(TEST_TEXT),result.clip);renderList();updateControls();
+      $('gpuResult').textContent='WebGPU 경로에서 Puck 음성 생성 완료 · 이 기기의 결과입니다.';toast('한 문장 준비 완료. 오디오의 재생 버튼을 눌러보세요.');
+    }catch(error){if(id===activeWork&&error.name!=='AbortError'){client.abort();showError(error);}}
+    finally{finishWork(id);}
+  }
+  async function generateAll() {
+    if(busy||parseError||!sentences.length)return;
+    const queue=sentences.filter(s=>selected.has(s.id));
+    if(!queue.length){toast('학습할 문장을 하나 이상 선택해주세요.');return;}
+    if(queue.every(s=>clips.has(s.key))){startStudy();return;}
+    const autoRouteEpoch=navigationEpoch;
+    const id=beginWork(`${queue.length}문장 음성 만들기`);workKind='lesson';syncTabs();let reused=0;
+    $('workCard').scrollIntoView({behavior:'smooth',block:'center'});
+    try{
+      for(let i=0;i<queue.length;i++){
+        const item=queue[i];workContext=`${i+1} / ${queue.length}문장`;
+        const r=await synthesize(item.text,id,`${workContext} 생성 중`);checkWork(id);
+        clips.set(item.key,r.clip);if(r.reused)reused++;renderList();renderPlayer();engine.onClipReady(item.key);
+        if(i===0&&!engine.queue.length)toast('첫 문장 준비 완료. ‘학습’ 탭이나 ‘먼저 듣기’에서 시작할 수 있어요.');
+        await sleep(20);checkWork(id);
+      }
+      toast(`${queue.length}문장 준비 완료${reused?` · ${reused}개 재사용`:''}. 학습 시작을 눌러주세요.`);
+      $('generationNote').textContent='모두 준비됐어요. 아래 학습 시작을 누르면 반복해서 들을 수 있어요.';
+      if(!engine.running()&&navigationEpoch===autoRouteEpoch&&!document.querySelector('dialog[open]'))activateTab('learn',{focus:true});
+    }catch(error){if(id===activeWork&&error.name!=='AbortError'){client.abort();showError(error);}}
+    finally{finishWork(id);renderPlayer();}
+  }
+
+  // Single persistent audio element, guarded against old play promises and canceled events.
+  class PracticeEngine {
+    constructor(){this.status='idle';this.queue=[];this.position=0;this.rep=0;this.config={...DEFAULTS};this.epoch=0;this.timer=null;this.deadline=0;this.remaining=0;this.phase='playing';this.completed=new Set();this.listened=new Set();this.reason='';}
+    running(){return this.status==='playing'||this.status==='gap'||this.status==='waiting';}
+    onClipReady(key){const item=this.queue[this.position];if(this.status==='waiting'&&item&&item.key===key)this.speak();}
+    invalidate(){this.epoch++;clearInterval(this.timer);this.timer=null;audio.onended=null;audio.onerror=null;audio.pause();}
+    stop(){this.invalidate();this.status='idle';this.queue=[];this.position=0;this.rep=0;this.completed.clear();this.listened.clear();this.reason='';if(audioURL){audio.removeAttribute('src');audio.load();URL.revokeObjectURL(audioURL);audioURL=null;}if(!busy)releaseScreen();renderPlayer();}
+    start(queue){this.stop();if(!queue.length)return;this.queue=queue.map(s=>({...s}));this.config={...state.settings};this.position=0;this.rep=0;this.speak();}
+    speak(){
+      const item=this.queue[this.position];if(!item){this.finish();return;}
+      this.invalidate();const token=this.epoch;this.status='playing';this.phase='playing';this.reason='';revealed=false;
+      const clip=clips.get(item.key);if(!clip){this.status=busy&&workKind==='lesson'?'waiting':'paused';this.reason='missing-audio';renderPlayer();if(this.status==='paused')toast('이 문장 생성이 완료되지 않았어요. 준비된 문장을 듣거나 생성을 다시 시작하세요.');return;}
+      if(audioURL){audio.removeAttribute('src');URL.revokeObjectURL(audioURL);}
+      audioURL=URL.createObjectURL(clip.blob);audio.src=audioURL;audio.playbackRate=this.config.rate;
+      if('preservesPitch' in audio)audio.preservesPitch=true;if('webkitPreservesPitch' in audio)audio.webkitPreservesPitch=true;
+      audio.onended=()=>{if(token!==this.epoch||this.status!=='playing')return;this.listened.add(`${this.position}:${this.rep}`);this.beginGap(this.config.gap*1000);};
+      audio.onerror=()=>{if(token!==this.epoch)return;this.pause();this.reason='audio';renderPlayer();toast('오디오 재생에 실패했어요. Safari에서 다시 재생해주세요.');};
+      // No await before play(): keep the first audio start within the user's gesture.
+      const p=audio.play();if(p&&p.catch)p.catch(error=>{if(token!==this.epoch)return;this.pause();this.reason='blocked';renderPlayer();toast('학습 시작 또는 이어 듣기를 직접 눌러주세요.');});
+      lockScreen();renderPlayer();
+    }
+    beginGap(ms){
+      audio.onended=null;this.status='gap';this.phase='gap';this.remaining=ms;this.deadline=performance.now()+ms;
+      const token=this.epoch;clearInterval(this.timer);renderPlayer();
+      if(ms<=0){this.timer=setTimeout(()=>{if(token===this.epoch)this.advance();},0);return;}
+      this.timer=setInterval(()=>{if(token!==this.epoch)return;this.remaining=Math.max(0,this.deadline-performance.now());updateCue();if(this.remaining<=0){clearInterval(this.timer);this.timer=null;this.advance();}},100);
+    }
+    advance(){if(this.rep+1<this.config.repeat){this.rep++;this.speak();}else{this.completed.add(this.queue[this.position].id);if(this.position+1<this.queue.length){this.position++;this.rep=0;this.speak();}else this.finish();}}
+    pause(reason='manual'){if(!this.running())return;const phase=this.status;if(phase==='gap')this.remaining=Math.max(0,this.deadline-performance.now());this.invalidate();this.phase=phase;this.status='paused';this.reason=reason;if(!busy)releaseScreen();renderPlayer();}
+    resume(){if(!this.queue.length)return;this.reason='';if(this.phase==='gap'){this.beginGap(this.remaining);lockScreen();}else this.speak();}
+    skip(delta){if(!this.queue.length)return;const next=Math.max(0,Math.min(this.queue.length-1,this.position+delta));if(next===this.position)return;const was=this.running();this.invalidate();this.position=next;this.rep=0;this.phase='playing';this.reason='';revealed=false;if(was)this.speak();else{this.status='paused';renderPlayer();}}
+    finish(){this.invalidate();this.status='complete';if(!busy)releaseScreen();renderPlayer();toast(`${this.completed.size}문장 듣기를 완료했어요.`);}
+  }
+  const engine=new PracticeEngine();
+  function selectedItems(){return sentences.filter(s=>selected.has(s.id));}
+  function currentItem(){return engine.queue.length?engine.queue[engine.position]:selectedItems()[0]||sentences[0];}
+  function firstReady(){const q=selectedItems();return !parseError&&q.length>0&&clips.has(q[0].key);}
+  function allReady(){const q=selectedItems();return !parseError&&q.length>0&&q.every(s=>clips.has(s.key));}
+  function updateCue(){if(engine.status==='gap')$('playCue').textContent=`${Math.ceil(engine.remaining/1000)}초 동안 따라 말해보세요.`;}
+  function renderPlayer(){
+    const item=currentItem(),active=engine.queue.length>0,config=active?engine.config:state.settings;
+    $('currentText').textContent=item?item.text:'Your next six sentences start here.';$('currentTranslation').textContent=item?item.translation:'';
+    const originalIndex=item?sentences.findIndex(s=>s.id===item.id)+1:0;
+    $('sentenceCounter').textContent=`SENTENCE ${originalIndex?String(originalIndex).padStart(2,'0'):'—'} / ${sentences.length?String(sentences.length).padStart(2,'0'):'—'}`;
+    const star=Boolean(item&&state.stars.includes(item.text));$('currentStar').disabled=!item||busy;$('currentStar').classList.toggle('starred',star);$('currentStar').setAttribute('aria-pressed',String(star));
+    $('currentText').classList.toggle('blurred',state.settings.hideEnglish&&!revealed);$('revealText').hidden=!state.settings.hideEnglish;$('revealText').textContent=revealed?'다시 가리기':'영어 문장 보기';
+    const labels={idle:allReady()?'학습 준비 완료':'음성을 먼저 준비하세요',playing:'Puck · 듣는 중',gap:'따라 말할 차례',paused:'잠깐 쉬는 중',waiting:'다음 음성 준비 중',complete:'오늘도 해냈어요'};
+    $('playStatus').textContent=labels[engine.status];
+    $('completedCount').textContent=`${engine.completed.size} / ${active?engine.queue.length:selected.size}문장 듣기 완료`;
+    $('repeatCount').textContent=active?`${engine.rep+1} / ${config.repeat}회 듣기`:`문장마다 ${config.repeat}회`;
+    const total=active?engine.queue.length*config.repeat:0,pct=total?Math.min(100,Math.round(engine.listened.size/total*100)):0;
+    $('learnFill').style.width=pct+'%';$('learnProgress').setAttribute('aria-valuenow',String(pct));
+    const cues={idle:firstReady()?'아래 재생 버튼으로 먼저 학습할 수 있어요.':'음성 생성 후 학습 시작을 눌러주세요.',waiting:'현재 문장을 만드는 중입니다. 준비되면 이어서 읽습니다.',playing:'듣고, 잠시 뒤 직접 따라 말해보세요.',paused:engine.reason==='hidden'?'화면 전환으로 멈췄어요. 이어 듣기를 눌러주세요.':engine.reason==='tab'?'문장·설정으로 이동해 잠시 멈췄어요. 이어 듣기를 누르세요.':engine.reason==='missing-audio'?'이 문장 생성이 끝나지 않았어요. 준비된 문장으로 이동하거나 생성을 다시 시작하세요.':engine.phase==='gap'?'남은 쉼 시간부터 이어갑니다.':'이어 듣기를 누르면 현재 문장을 처음부터 읽어요.',complete:'어려웠던 문장은 별표를 남기고 다시 연습하세요.'};
+    if(engine.status==='gap')updateCue();else $('playCue').textContent=cues[engine.status]||'';
+    $('playIcon').setAttribute('href',engine.running()?'#pause':'#play');
+    $('playLabel').textContent=engine.running()?'일시정지':engine.status==='paused'?'이어 듣기':engine.status==='complete'?'한 번 더 학습':'학습 시작';
+    $('playBtn').disabled=(busy&&workKind!=='lesson')||(!active&&!firstReady());
+    $('previousBtn').disabled=!active||engine.position===0;$('nextBtn').disabled=!active||engine.position===engine.queue.length-1;$('stopBtn').disabled=!active&&!busy;
+    const ready=selectedItems().filter(s=>clips.has(s.key)).length;
+    if(!active&&firstReady()&&!allReady())$('playLabel').textContent='먼저 듣기';
+    $('dockStatus').textContent=busy?`${ready}/${selected.size}문장 준비 · ${firstReady()?'먼저 재생 가능':'첫 음성 생성 중'}`:engine.running()?`${engine.position+1}/${engine.queue.length}문장 · ${engine.rep+1}/${engine.config.repeat}회`:`${ready}/${selected.size}문장 음성 준비 · ${state.settings.gap}초 쉼`;
+    for(const row of $('sentenceList').children){row.classList.toggle('current',active&&item&&row.dataset.id===item.id);}
+    syncTabs();
+  }
+
+  // Tabs follow the WAI-ARIA tabs pattern; hidden panels are not recreated.
+  function activateTab(name,{manual=false,focus=false,scroll=true}={}){
+    if(!['learn','prepare'].includes(name))return;
+    if(manual)navigationEpoch++;
+    if(name==='prepare'&&currentTab!=='prepare')engine.pause('tab');
+    if(name==='learn')testAudio.pause();
+    currentTab=name;
+    for(const screen of ['learn','prepare']){
+      const selectedScreen=screen===name;
+      const tab=$(screen==='learn'?'tabLearn':'tabPrepare');
+      tab.setAttribute('aria-selected',String(selectedScreen));tab.tabIndex=selectedScreen?0:-1;
+      $(screen==='learn'?'panelLearn':'panelPrepare').hidden=!selectedScreen;
+    }
+    document.body.dataset.screen=name;
+    if(focus)$(name==='learn'?'tabLearn':'tabPrepare').focus({preventScroll:true});
+    syncTabs();
+    if(scroll)window.scrollTo({top:0,behavior:'instant'});
+  }
+  function openPrepare(target='inputCard'){
+    activateTab('prepare',{manual:true,focus:true});
+    if(target==='inputCard')foldEditor(false);
+    if(target==='settings')$('settings').open=true;
+    if(target==='setupCard')$('voiceOptions').open=true;
+    $(target).scrollIntoView({behavior:'instant',block:'start'});
+  }
+  function syncTabs(){
+    const ready=selectedItems().filter(s=>clips.has(s.key)).length;
+    const has=sentences.length>0,active=engine.queue.length>0;
+    document.body.classList.toggle('has-study',has);
+    $('studyEmpty').hidden=has;$('studyContent').hidden=!has;
+    $('studyDock').hidden=currentTab!=='learn'||!has;
+    $('learnTabBadge').hidden=!ready;$('learnTabBadge').textContent=String(ready);
+    $('learnSubtitle').textContent=!has?'여섯 문장에만 집중하세요.':engine.status==='complete'?'오늘도 연습을 마쳤어요.':`${selected.size}문장 · 듣고, 따라 말하고, 반복하세요.`;
+    const config=active?engine.config:state.settings;
+    $('learnSettings').textContent=`${config.rate.toFixed(1)}× · ${config.repeat}회 · ${config.gap}초 쉼`;
+    $('quickHide').setAttribute('aria-pressed',String(state.settings.hideEnglish));
+    $('quickHide').textContent=state.settings.hideEnglish?'영어 가리기 켜짐':'영어 가리기';
+    const canStart=firstReady()&&(!busy||workKind==='lesson');
+    $('goLearnReady').hidden=!canStart||allReady();
+    $('goLearnReady').textContent=allReady()?'학습 화면으로':`학습 화면으로 · ${ready}/${selected.size}문장 준비`;
+    $('firstListen').hidden=!canStart||workKind!=='lesson'||!busy;
+    const working=busy;
+    $('learnWork').hidden=!working;
+    if(working){
+      $('learnWorkTitle').textContent=workKind==='lesson'?`${ready}/${selected.size}문장 준비 · ${phaseName||'음성 준비 중'}`:`${workLabel} · ${phaseName||'준비 중'}`;
+      const seconds=phaseStarted?Math.floor((performance.now()-phaseStarted)/1000):0;
+      $('learnWorkDetail').textContent=`현재 단계 ${seconds}초 · ${workKind!=='lesson'?'시험이 끝나면 학습할 수 있어요.':firstReady()?'준비된 문장부터 들을 수 있어요.':'첫 문장을 준비하고 있어요.'}`;
+    }
+    $('learnNeedsAudio').hidden=busy||allReady()||!has;
+    $('needsAudioText').textContent=parseError||(!selected.size?'학습할 문장을 아래 목록에서 선택해주세요.':`${ready}/${selected.size}문장 음성 준비 · 아직 준비되지 않은 소리가 있어요.`);
+    $('prepareMissing').hidden=!selected.size;
+    // Moving between these panels does not change document.visibilityState.
+  }
+
+  function startStudy(){
+    if(busy&&workKind!=='lesson')return;
+    if(engine.running()){engine.pause();return;}
+    if(!firstReady()&&!engine.queue.length){toast('첫 번째 선택 문장의 음성을 먼저 만들어주세요.');return;}
+    activateTab('learn',{focus:true});
+    testAudio.pause();if(engine.status==='paused')engine.resume();else engine.start(selectedItems());
+  }
+  function foldEditor(fold){$('editorBody').hidden=fold;$('editorSummary').hidden=!fold;$('toggleEditor').textContent=fold?'펼치기':'접기';$('toggleEditor').setAttribute('aria-expanded',String(!fold));$('editorSummary').textContent=sentences.length?`${sentences.length}문장 · ${sentences[0].text}`:'영어 문장을 붙여넣어주세요.';}
+  function settingsToDOM(){for(const k of ['speed','repeat','gap'])$(k).value=state.settings[k==='speed'?'rate':k];$('hideEnglish').checked=state.settings.hideEnglish;$('keepAwake').checked=state.settings.keepAwake;$('settingsSummary').textContent=`${state.settings.rate.toFixed(1)}× · ${state.settings.repeat}회 · ${state.settings.gap}초 쉼`;}
+  function renderList(){
+    $('sentenceList').replaceChildren();$('listCount').textContent=`${sentences.length}개 · ${selected.size}개 선택`;
+    for(const s of sentences){
+      const li=document.createElement('li');li.className='sentence';li.dataset.id=s.id;
+      const checkbox=document.createElement('input');checkbox.type='checkbox';checkbox.checked=selected.has(s.id);checkbox.disabled=busy;checkbox.dataset.action='select';checkbox.setAttribute('aria-label',`${Number(s.id)+1}번 문장 학습에 포함`);
+      const body=document.createElement('div');body.className='sentence-body';const en=document.createElement('p');en.lang='en';en.textContent=s.text;body.append(en);
+      if(s.translation){const t=document.createElement('p');t.className='translation';t.textContent=s.translation;body.append(t);}
+      const status=document.createElement('p');status.className='clip-state';status.textContent=clips.has(s.key)?`음성 준비됨 · ${clips.get(s.key).duration.toFixed(1)}초`:'음성 생성 전';body.append(status);
+      const button=document.createElement('button');button.className='iconbtn'+(state.stars.includes(s.text)?' starred':'');button.dataset.action='star';button.setAttribute('aria-label',`${Number(s.id)+1}번 문장 별표`);button.setAttribute('aria-pressed',String(state.stars.includes(s.text)));button.disabled=busy;button.innerHTML=ico('star');
+      li.append(checkbox,body,button);$('sentenceList').append(li);
+    }
+  }
+  function updateControls(){
+    for(const id of ['testBtn','probeBtn','pasteBtn','sampleBtn','clearBtn','undoPaste','sentenceInput','saveLesson','selectAll','selectStars','importData','clearAudioCache','eraseData'])$(id).disabled=busy;
+    $('pasteBtn').disabled=busy||clipboardBusy;
+    $('sentenceList').querySelectorAll('input,button').forEach(el=>el.disabled=busy);
+    $('libraryList').querySelectorAll('button').forEach(el=>el.disabled=busy);
+    $('generateBtn').disabled=busy||Boolean(parseError)||!selected.size;
+    $('generateBtn').textContent=allReady()?'학습 시작':selected.size?`${selected.size}문장 음성 만들기`:'문장 음성 만들기';
+    updateModelBadge();
+    renderPlayer();
+  }
+  async function parseInput(){
+    const epoch=++parsedEpoch;engine.stop();sentences=[];selected.clear();parseError='';
+    state.draft=$('sentenceInput').value;
+    try{const result=parse(state.draft);sentences=result.sentences;parsedIgnored=result.ignored;selected=new Set(sentences.map(s=>s.id));}
+    catch(error){parseError=error.message;}
+    $('draftCount').textContent=parseError|| (sentences.length?`${sentences.length}문장 준비${sentences.length===6?' · 오늘의 여섯 문장':''}`:'영어 6문장을 붙여넣어 주세요');
+    $('draftCount').style.color=parseError?'var(--warn)':'';
+    $('generationNote').textContent='음성을 한 번 만들면 반복할 때 다시 생성하지 않아요.';
+    if(parsedIgnored&&!parseError)$('pasteHint').textContent=`제목·비학습 항목 ${parsedIgnored}개를 제외했어요. 문장 목록을 확인해주세요.`;
+    renderList();updateControls();persist();
+    // Asynchronous cache hydration is epoch-guarded: older pasted text cannot replace a new draft.
+    for(const s of sentences.slice()){
+      if(clips.has(s.key))continue;
+      const entry=await cachedClip(s.key);if(epoch!==parsedEpoch)return;
+      if(entry)clips.set(s.key,entry);
+    }
+    if(epoch===parsedEpoch){renderList();updateControls();}
+  }
+  function toggleStar(id){const item=sentences.find(s=>s.id===id);if(!item||busy)return;const i=state.stars.indexOf(item.text);i>=0?state.stars.splice(i,1):state.stars.push(item.text);persist();renderList();renderPlayer();}
+  async function paste(){
+    if(busy||clipboardBusy)return;foldEditor(false);
+    if(!navigator.clipboard||!isSecureContext){manualPaste();return;}
+    const before=$('sentenceInput').value;clipboardBusy=true;updateControls();
+    try{const text=await navigator.clipboard.readText();if(!text.trim()){toast('영어 문장을 먼저 복사해주세요.');return;}if(text.length>MAX_TOTAL){toast('한 번에 12,000자까지 붙여넣을 수 있어요.');return;}if(busy||$('sentenceInput').value!==before){toast('입력이 바뀌었어요. 다시 붙여넣어주세요.');return;}pasteUndo=before;$('undoPaste').hidden=false;$('sentenceInput').value=text;await parseInput();$('pasteHint').textContent='붙여넣었어요. 문장 수를 확인하고 음성을 만들어주세요.';}
+    catch(error){manualPaste();}finally{clipboardBusy=false;updateControls();}
+  }
+  function manualPaste(){$('sentenceInput').focus();$('pasteHint').textContent='입력창을 길게 눌러 ‘붙여넣기’를 선택하세요.';toast('입력창을 길게 눌러 붙여넣어주세요.');}
+  function renderLibrary(){
+    $('libraryList').replaceChildren();
+    if(!state.library.length){const p=document.createElement('p');p.textContent='아직 보관한 문장이 없어요. 학습 탭의 문장 목록에서 보관함에 저장을 눌러주세요.';$('libraryList').append(p);return;}
+    for(const lesson of state.library){
+      const div=document.createElement('section');div.className='saved-lesson';div.dataset.id=lesson.id;
+      const info=document.createElement('div');const title=document.createElement('h3');title.textContent=lesson.title;
+      const date=document.createElement('p');date.textContent=new Date(lesson.savedAt).toLocaleDateString('ko-KR');info.append(title,date);
+      const load=document.createElement('button');load.className='secondary';load.textContent='불러오기';load.dataset.action='load';load.disabled=busy;
+      const del=document.createElement('button');del.className='iconbtn';del.innerHTML=ico('trash');del.setAttribute('aria-label',lesson.title+' 삭제');del.dataset.action='delete';del.disabled=busy;
+      div.append(info,load,del);$('libraryList').append(div);
+    }
+  }
+  function saveLesson(){
+    if(busy||parseError||!sentences.length){toast('보관할 영어 문장을 먼저 넣어주세요.');return;}
+    const title=prompt('학습 제목을 입력하세요.',state.title==='오늘의 영어'?`${new Date().toLocaleDateString('ko-KR')} · 영어 ${sentences.length}문장`:state.title);
+    if(title===null)return;const name=title.trim().slice(0,80)||'영어 연습';const existing=state.library.findIndex(s=>s.title===name);
+    if(existing<0&&state.library.length>=MAX_LIBRARY){toast('60세트까지 보관할 수 있어요. 백업 후 일부 항목을 지워주세요.');return;}
+    if(existing>=0&&!confirm('같은 제목의 문장을 현재 내용으로 교체할까요?'))return;
+    if(existing>=0)state.library.splice(existing,1);state.title=name;
+    state.library.unshift({id:uid(),title:name,draft:state.draft,stars:sentences.filter(s=>state.stars.includes(s.text)).map(s=>s.text),savedAt:Date.now()});persist();toast(storageOK?'보관함에 저장했어요.':'이 화면에만 저장했어요. 백업을 저장해주세요.');
+  }
+  function download(blob,name){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);}
+  function exportData(){download(new Blob([JSON.stringify({app:'English Loop Puck',...state,exportedAt:new Date().toISOString()},null,2)],{type:'application/json'}),`english-loop-puck-${new Date().toISOString().slice(0,10)}.json`);toast('문장·설정·보관함을 백업합니다. 음성 파일은 포함되지 않아요.');}
+  async function importData(file){
+    if(!file||busy)return;
+    try{
+      if(file.size>15000000)throw new Error('15MB 이하의 백업 파일을 선택해주세요.');
+      const data=JSON.parse(await file.text());
+      if(!((data.app==='English Loop Puck'&&data.version===2)||(data.app==='English Loop'&&data.version===1)))throw new Error('English Loop 백업이 아닙니다.');
+      if(typeof data.draft!=='string'||data.draft.length>60000||!Array.isArray(data.library)||data.library.length>MAX_LIBRARY)throw new Error('백업 데이터 형식이 올바르지 않습니다.');
+      const next={version:2,title:typeof data.title==='string'?data.title.slice(0,80):'오늘의 영어',draft:data.draft,settings:settingsOf(data.settings||{}),stars:Array.isArray(data.stars)?data.stars.filter(t=>typeof t==='string').slice(0,4000):[],library:data.library.map(lessonOf)};
+      if(!confirm('현재 Puck 문장·설정·보관함을 백업 내용으로 바꿀까요? 기존 내용은 먼저 백업해주세요.'))return;
+      engine.stop();state=next;storageOK=true;$('sentenceInput').value=state.draft;settingsToDOM();await parseInput();renderLibrary();openPrepare();toast('문장 백업을 불러왔어요. 음성은 필요할 때 다시 만듭니다.');
+    }catch(error){toast(error instanceof SyntaxError?'JSON 파일을 읽지 못했어요.':error.message);}finally{$('importFile').value='';}
+  }
+
+  loadState();$('sentenceInput').value=state.draft;settingsToDOM();
+  const startupNavigation=navigationEpoch;
+  const initialParse=parseInput(),startupParseEpoch=parsedEpoch;
+  initialParse.then(()=>{if(navigationEpoch===startupNavigation&&parsedEpoch===startupParseEpoch&&firstReady()&&!recoveredMarker&&!document.querySelector('dialog[open]'))activateTab('learn',{scroll:false});}).catch(error=>showError(error,'문장 준비 오류'));
+  if(recoveredMarker)notice('지난 음성 준비가 완료되기 전에 페이지가 닫혔어요. 자동 재실행하지 않습니다. 다른 탭을 닫고 한 문장 테스트부터 다시 해주세요.');
+  else if(migrationNotice)notice(migrationNotice);
+  if(location.protocol==='file:')notice('이 파일은 GitHub Pages에 업로드한 뒤 Safari의 웹 주소로 사용하세요. 파일 미리보기에서는 AI 음성을 생성하지 않습니다.');
+  if(!navigator.wakeLock)$('wakeStatus').textContent='미지원';
+
+  for(const [id,name] of [['tabLearn','learn'],['tabPrepare','prepare']]){
+    $(id).addEventListener('click',()=>activateTab(name,{manual:true}));
+    $(id).addEventListener('keydown',event=>{
+      let target=null;
+      if(event.key==='ArrowLeft'||event.key==='ArrowRight')target=name==='learn'?'prepare':'learn';
+      else if(event.key==='Home')target='learn';else if(event.key==='End')target='prepare';
+      if(target){event.preventDefault();activateTab(target,{manual:true,focus:true});}
+    });
+  }
+  $('emptyGoPrepare').addEventListener('click',()=>openPrepare());
+  $('goLearnReady').addEventListener('click',()=>activateTab('learn',{manual:true,focus:true}));
+  $('firstListen').addEventListener('click',()=>{navigationEpoch++;startStudy();});
+  $('showWork').addEventListener('click',()=>openPrepare('workCard'));
+  $('stopWorkCompact').addEventListener('click',()=>cancelWork());
+  $('prepareMissing').addEventListener('click',()=>openPrepare());
+  $('editPlayback').addEventListener('click',()=>openPrepare('settings'));
+  $('quickHide').addEventListener('click',()=>{$('hideEnglish').click();});
+  // Never send an editing user to another panel when a pending async task completes.
+  $('panelPrepare').addEventListener('input',()=>{navigationEpoch++;});
+  $('panelPrepare').addEventListener('change',()=>{navigationEpoch++;});
+  $('voiceOptions').addEventListener('toggle',()=>{navigationEpoch++;});
+  $('settings').addEventListener('toggle',()=>{navigationEpoch++;});
+  syncTabs();
+
+  $('probeBtn').addEventListener('click',probeGPU);$('testBtn').addEventListener('click',testVoice);$('generateBtn').addEventListener('click',generateAll);$('cancelWork').addEventListener('click',()=>cancelWork());
+  $('pasteBtn').addEventListener('click',paste);$('sentenceInput').addEventListener('input',()=>parseInput().catch(error=>showError(error)));
+  $('undoPaste').addEventListener('click',()=>{if(busy||pasteUndo===null)return;const saved=pasteUndo;pasteUndo=null;$('undoPaste').hidden=true;$('sentenceInput').value=saved;parseInput();});
+  $('sampleBtn').addEventListener('click',()=>{if(busy)return;if(state.draft.trim()&&state.draft!==EXAMPLE&&!confirm('현재 입력을 예문 6개로 바꿀까요?'))return;pasteUndo=state.draft;$('undoPaste').hidden=false;$('sentenceInput').value=EXAMPLE;parseInput();});
+  $('clearBtn').addEventListener('click',()=>{if(busy)return;if(state.draft.trim()&&!confirm('현재 입력을 비울까요? 보관함은 유지됩니다.'))return;pasteUndo=state.draft;$('undoPaste').hidden=false;$('sentenceInput').value='';parseInput();});
+  $('toggleEditor').addEventListener('click',()=>foldEditor(!$('editorBody').hidden));
+  $('editBtn').addEventListener('click',()=>openPrepare());
+  for(const id of ['speed','repeat','gap'])$(id).addEventListener('change',()=>{engine.stop();state.settings[id==='speed'?'rate':id]=Number($(id).value);settingsToDOM();persist();renderPlayer();});
+  $('hideEnglish').addEventListener('change',()=>{state.settings.hideEnglish=$('hideEnglish').checked;revealed=false;persist();renderPlayer();});
+  $('keepAwake').addEventListener('change',()=>{state.settings.keepAwake=$('keepAwake').checked;persist();state.settings.keepAwake?lockScreen():releaseScreen();});
+  $('revealText').addEventListener('click',()=>{revealed=!revealed;renderPlayer();});
+  $('playBtn').addEventListener('click',startStudy);$('previousBtn').addEventListener('click',()=>engine.skip(-1));$('nextBtn').addEventListener('click',()=>engine.skip(1));$('stopBtn').addEventListener('click',()=>{if(busy)cancelWork();engine.stop();});
+  $('currentStar').addEventListener('click',()=>{const item=currentItem();if(item)toggleStar(item.id);});
+  $('sentenceList').addEventListener('click',event=>{const b=event.target.closest('button[data-action]');if(b&&b.dataset.action==='star')toggleStar(b.closest('[data-id]').dataset.id);});
+  $('sentenceList').addEventListener('change',event=>{if(busy||event.target.dataset.action!=='select')return;engine.stop();const id=event.target.closest('[data-id]').dataset.id;event.target.checked?selected.add(id):selected.delete(id);renderList();updateControls();});
+  $('selectAll').addEventListener('click',()=>{if(busy)return;engine.stop();selected=new Set(sentences.map(s=>s.id));renderList();updateControls();});
+  $('selectStars').addEventListener('click',()=>{if(busy)return;const stars=sentences.filter(s=>state.stars.includes(s.text));if(!stars.length){toast('먼저 어려운 문장에 별표를 눌러주세요.');return;}engine.stop();selected=new Set(stars.map(s=>s.id));renderList();updateControls();});
+  $('openHelp').addEventListener('click',()=>{$('helpDialog').showModal();});
+  $('openLibrary').addEventListener('click',()=>{renderLibrary();$('libraryDialog').showModal();});
+  document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>$(b.dataset.close).close()));
+  $('saveLesson').addEventListener('click',saveLesson);
+  $('libraryList').addEventListener('click',event=>{if(busy)return;const b=event.target.closest('button[data-action]');if(!b)return;const lesson=state.library.find(s=>s.id===b.closest('[data-id]').dataset.id);if(!lesson)return;if(b.dataset.action==='delete'){if(confirm('이 보관함 항목을 삭제할까요?')){state.library=state.library.filter(s=>s.id!==lesson.id);persist();renderLibrary();}return;}if(state.draft.trim()&&!confirm('현재 입력을 보관한 문장으로 바꿀까요?'))return;state.title=lesson.title;for(const t of lesson.stars)if(!state.stars.includes(t))state.stars.push(t);$('sentenceInput').value=lesson.draft;parseInput();$('libraryDialog').close();openPrepare();});
+  $('exportData').addEventListener('click',exportData);$('importData').addEventListener('click',()=>$('importFile').click());$('importFile').addEventListener('change',()=>importData($('importFile').files[0]));
+  $('clearAudioCache').addEventListener('click',async()=>{if(busy||!confirm('Puck에서 만든 문장 음성을 삭제할까요? 문장·보관함·모델 캐시는 유지됩니다.'))return;engine.stop();testAudio.pause();testAudio.removeAttribute('src');testAudio.load();if(testURL)URL.revokeObjectURL(testURL);testURL=null;$('testPlayer').hidden=true;clips.clear();try{await cache.clear();toast('문장 음성을 삭제했어요. 필요할 때 다시 만들면 됩니다.');}catch(error){toast(error.message);}renderList();updateControls();});
+  $('eraseData').addEventListener('click',()=>{if(busy||!confirm('Puck 버전의 문장·설정·보관함을 삭제할까요? 이전 버전 데이터와 음성 캐시는 그대로 남습니다.'))return;engine.stop();state={version:2,title:'오늘의 영어',draft:'',settings:{...DEFAULTS},stars:[],library:[]};storageOK=true;$('sentenceInput').value='';settingsToDOM();parseInput();renderLibrary();$('helpDialog').close();openPrepare();toast('Puck 학습 내용을 지웠어요. 음성 삭제는 별도 버튼을 사용하세요.');});
+  $('dismissError').addEventListener('click',()=>$('errorBox').hidden=true);
+  async function copyDiagnostic(){
+    const text=JSON.stringify({app:'English Loop',build:BUILD,requestedDevice:'webgpu',dtype:'fp32',voice:'am_puck',browser:navigator.userAgent,secureContext:isSecureContext,modelLoaded:client.ready,gpu:client.gpu,phase:phaseName,phaseSeconds:phaseStarted?Math.round((performance.now()-phaseStarted)/1000):0,sentenceCount:sentences.length,sentenceLengths:sentences.map(s=>s.text.length),timings,error:lastError,events:diagnosticEvents},null,2);
+    try{await navigator.clipboard.writeText(text);toast('진단을 복사했어요. 영어 문장·한국어 뜻·보관함은 포함하지 않습니다.');}
+    catch(error){$('errorDetails').textContent=text;$('errorTitle').textContent='진단 복사';$('errorMessage').textContent='아래 내용을 길게 눌러 복사하세요.';$('errorBox').hidden=false;$('errorDetails').closest('details').open=true;}
+  }
+  $('copyDiagnostic').addEventListener('click',copyDiagnostic);$('copyDiagnosticAlways').addEventListener('click',copyDiagnostic);
+  testAudio.addEventListener('play',()=>{if(busy){testAudio.pause();return;}engine.pause();});
+  document.addEventListener('visibilitychange',()=>{if(document.hidden){engine.pause('hidden');testAudio.pause();if(busy)cancelWork('화면 전환으로 음성 준비를 중지했어요. 완료된 소리는 남아 있습니다.');persist();}});
+  window.addEventListener('pagehide',()=>{engine.pause('hidden');testAudio.pause();if(busy)cancelWork();client.abort();persist();});
+  window.addEventListener('pageshow',()=>{updateControls();});
+  document.addEventListener('keydown',event=>{if(currentTab!=='learn'||event.ctrlKey||event.metaKey||event.altKey||event.shiftKey||document.querySelector('dialog[open]')||event.target.closest('input,textarea,select,button,a,summary,[contenteditable]'))return;if(event.code==='Space'){event.preventDefault();startStudy();}else if(event.code==='ArrowLeft'){event.preventDefault();engine.skip(-1);}else if(event.code==='ArrowRight'){event.preventDefault();engine.skip(1);}});
+})();
+
+</script>
+</body>
+</html>
